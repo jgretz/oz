@@ -1,0 +1,46 @@
+{
+  "name": "zen-express",
+  "version": "0.0.1",
+  "description": "a platform to quickly spin up a configurable api",
+  "main": "server.js",
+  "scripts": {
+    "start": "babel-node src/server.js",
+    "debug": "nodemon src/server.js --exec babel-node",
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgretz/zen-express"
+  },
+  "author": {
+    "name": "Josh Gretz",
+    "email": "jgretz@gmail.com",
+    "url": "http://www.gretzlab.com"
+  },
+  "license": "MIT",
+  "readme": "/README.md",
+  "bugs": {
+    "url": "https://github.com/jgretz/zen-express"
+  },
+  "homepage": "https://github.com/jgretz/zen-express#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "lodash": "^4.13.1",
+    "body-parser": "^1.15.0",
+    "glob": "^7.0.3",
+    "object-assign": "^4.0.1",
+    "promise": "^7.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "6.10.4",
+    "babel-eslint": "6.1.2",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "babel-register": "6.9.0",
+    "eslint": "^3.1.1",
+    "eslint-plugin-import": "^1.9.2",
+    "nodemon": "^1.9.2"
+  }
+}
