@@ -1,7 +1,7 @@
 import express from 'express';
 import objectAssign from 'object-assign';
-import configure from './src/config';
-import applyRoutes from './src/routes';
+import configure from './configure';
+import applyRoutes from './routing';
 
 export default (options) => {
   const config = objectAssign({
@@ -12,7 +12,7 @@ export default (options) => {
     },
 
     port: 3000
-  }, options);
+  }, options || {});
 
   // create and configure the app
   const app = express();

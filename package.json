@@ -1,8 +1,8 @@
 {
   "name": "zen-express",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "a platform to quickly spin up a configurable api",
-  "main": "server.js",
+  "main": "lib/server.js",
   "scripts": {
     "start": "babel-node src/server.js",
     "debug": "nodemon src/server.js --exec babel-node",

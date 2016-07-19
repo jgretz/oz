@@ -1,3 +1,4 @@
+import express from 'express';
 import manualRoutes from './manual_routes';
 
 export default (app, config) => {
