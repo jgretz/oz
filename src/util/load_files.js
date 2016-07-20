@@ -14,8 +14,8 @@ export default (paths) => {
     let relativePath = file;
     _.forEach(paths, path => relativePath = relativePath.replace(path, ''));
 
-    const requirePath = file.startsWith(__dirname) ? file : `../../${file}`;
-
+    // the escape is a bit weird but it needs to get out of node_modules
+    const requirePath = file.startsWith(__dirname) ? file : `../../../../${file}`;
 
     // handle different ways this may come back depending on if its
     // and ES5 function, ES6 object or ES6 class
