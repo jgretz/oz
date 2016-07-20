@@ -24,13 +24,13 @@ export default (app, router, config) => {
 
       router[verb](path, (req, res) => {
         if (before) {
-          before(req, res);
+          before(req, res, verb);
         }
 
-        load.instance[verb](req, res);
+        route[verb](req, res);
 
         if (after) {
-          after(req, res);
+          after(req, res, verb);
         }
       });
     });
