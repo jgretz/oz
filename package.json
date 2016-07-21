@@ -2,11 +2,10 @@
   "name": "zen-express",
   "version": "0.0.5",
   "description": "a platform to quickly spin up a configurable api",
-  "main": "lib/server.js",
+  "main": "lib/index.js",
   "scripts": {
-    "start": "babel-node src/server.js",
-    "debug": "nodemon src/server.js --exec babel-node",
-    "compile": "babel -d lib/ src/",
+    "start": "nodemon src/test.js --exec babel-node",
+    "compile": "node tools/build.js",
     "prepublish": "npm run compile"
   },
   "repository": {
@@ -25,12 +24,13 @@
   },
   "homepage": "https://github.com/jgretz/zen-express#readme",
   "dependencies": {
-    "express": "^4.14.0",
-    "lodash": "^4.13.1",
     "body-parser": "^1.15.0",
+    "express": "^4.14.0",
     "glob": "^7.0.3",
+    "lodash": "^4.13.1",
     "object-assign": "^4.0.1",
-    "promise": "^7.1.1"
+    "promise": "^7.1.1",
+    "shelljs": "^0.7.0"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
