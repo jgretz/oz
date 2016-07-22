@@ -1,17 +1,17 @@
 import React, { PropTypes, Component } from 'react';
 
-class App extends Component {
+class App extends Component { // eslint-disable-line
   render() {
     return (
-        <div>
-          Admin Site
-        </div>
+      <div>
+        Admin Site
+      </div>
     );
   }
 }
 
 App.propTypes = {
-  route: PropTypes.object.isRequired
+  route: PropTypes.object.isRequired,
 };
 
 export default App;

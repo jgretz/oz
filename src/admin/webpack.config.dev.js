@@ -18,7 +18,7 @@ export default {
   ],
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
-    path: 'lib', // Note: Physical files are only output by the production build task `npm run build`.
+    path: `${__dirname}/lib`, // Note: Physical files are only output by the production build task `npm run build`.
     publicPath: '/',
     filename: 'bundle.js'
   },
