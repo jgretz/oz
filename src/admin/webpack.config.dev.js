@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import webpack from 'webpack';
 import path from 'path';
 
@@ -38,7 +40,7 @@ export default {
       components: path.resolve(__dirname, 'src/components'),
       actions: path.resolve(__dirname, 'src/actions'),
       support: path.resolve(__dirname, 'src/support'),
-      constants: path.resolve(__dirname, 'src/constants')
+      constants: path.resolve(__dirname, 'src/constants/test')
     }
   }
 };

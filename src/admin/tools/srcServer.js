@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // This file configures the development web server
 // which supports hot reloading and synchronized testing.
 

@@ -1,11 +1,11 @@
 // import
 import axios from 'axios';
-import { ROOT_URL } from 'constants';
+import constants from 'constants';
 
 // export
 export default class Http {
   url(relativeUrl) {
-    return `${ROOT_URL}/${relativeUrl}`;
+    return `${constants.API_URL}/${relativeUrl}`;
   }
 
   get(relativeUrl) {
@@ -22,7 +22,7 @@ export default class Http {
 
   postFile(relativeUrl, data) {
     return axios.post(this.url(relativeUrl), data, {
-      headers: { 'Content-Type': 'multipart/form-data' }
+      headers: { 'Content-Type': 'multipart/form-data' },
     });
   }
 

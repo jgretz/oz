@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Tests are placed alongside files under test.
 // This file does the following:
 // 1. Sets the environment to 'production' so that

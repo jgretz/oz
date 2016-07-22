@@ -2,15 +2,15 @@
 import Http from './http';
 
 // export
-export const GET = "GET";
-export const POST = "POST";
-export const POST_FILE = "POST_FILE";
-export const PUT = "PUT";
-export const DELETE = "DELETE";
+export const GET = 'GET';
+export const POST = 'POST';
+export const POST_FILE = 'POST_FILE';
+export const PUT = 'PUT';
+export const DELETE = 'DELETE';
 
 // this is the thunk response
-export const apiExecutor = (apiStruct) => {
-  return (dispatch) => {
+export const apiExecutor = (apiStruct) =>
+  (dispatch) => {
     const http = new Http();
     let request = null;
 
@@ -24,8 +24,8 @@ export const apiExecutor = (apiStruct) => {
         break;
 
       case POST_FILE:
-      request = http.postFile(apiStruct.url, apiStruct.data);
-      break;
+        request = http.postFile(apiStruct.url, apiStruct.data);
+        break;
 
       case PUT:
         request = http.put(apiStruct.url, apiStruct.data);
@@ -39,13 +39,7 @@ export const apiExecutor = (apiStruct) => {
         throw new Error(`Verb: ${apiStruct.verb} not known`);
     }
 
-    const action = (type, payload) => {
-      return {
-        type: type,
-        payload: payload
-      };
-    };
-
+    const action = (type, payload) => ({ type, payload });
     return request.then((response) => {
       dispatch(action(apiStruct.successType, response));
 
@@ -56,4 +50,3 @@ export const apiExecutor = (apiStruct) => {
       throw err;
     });
   };
-};

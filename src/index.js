@@ -5,19 +5,8 @@ import applyRoutes from './server/routing';
 
 const defaultConfig = {
   src: './src',
-
   port: 3000,
-
-  spa: {
-    path: '/release',
-    index: 'index.html',
-  },
-
-  dms: {
-    admin: {
-      url: '/admin'
-    }
-  }
+  admin: true
 };
 
 export default (options) => {
@@ -31,3 +20,18 @@ export default (options) => {
 
   app.listen(process.env.PORT || config.port);
 };
+
+// all props
+// {
+//   src: './src',
+//   port: 3000,
+//   admin: true,
+//   spa: {
+//     path: '/release',
+//     index: 'index.html'
+//   },
+//   db: {
+//     type: 'mongo',
+//     connection: ''
+//   }
+// };

@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 
-export default (app, config) => {
+export default (app, router, config) => {
   if (!config.spa) {
     return;
   }
