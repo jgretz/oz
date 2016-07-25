@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import loadFiles from '../util/load_files';
+import defineRoute from './define_route';
 
 export default (app, router, config) => {
-  const verbs = ['get','post','put','delete'];
   const routes = loadFiles([`${config.src}/routes`]);
 
   _.forEach(routes, (routeInfo) => {
@@ -17,22 +17,6 @@ export default (app, router, config) => {
     const before = route['before'];
     const after = route['after'];
 
-    _.forEach(verbs, (verb) => {
-      if (!route[verb]) {
-        return;
-      }
-
-      router[verb](path, (req, res) => {
-        if (before) {
-          before(req, res, verb);
-        }
-
-        route[verb](req, res);
-
-        if (after) {
-          after(req, res, verb);
-        }
-      });
-    });
+    defineRoute(router, route, path, before, after);
   });
 };

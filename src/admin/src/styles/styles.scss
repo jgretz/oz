@@ -1,0 +1,22 @@
+@import './variables';
+@import './menu';
+@import './edit_schema';
+
+html,
+body,
+#app {
+  @include tall;
+
+  .row {
+    @include tall;
+
+    .col-xs-2 {
+      @include tall;
+    }
+  }
+}
+
+
+.content {
+  padding: 20px;
+}

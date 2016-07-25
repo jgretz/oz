@@ -38,6 +38,7 @@ export default {
     extensions: ["", ".js", ".jsx"],
     alias: {
       components: path.resolve(__dirname, 'src/components'),
+      controls:  path.resolve(__dirname, 'src/components/controls'),
       actions: path.resolve(__dirname, 'src/actions'),
       support: path.resolve(__dirname, 'src/support'),
       constants: path.resolve(__dirname, 'src/constants/test')

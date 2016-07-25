@@ -1,0 +1,31 @@
+.edit-schema {
+  .btn-circle {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+
+    padding: 0 !important;
+    border-radius: 50% !important;
+
+    i {
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+
+  .save {
+    margin-top: -8px;
+  }
+
+  .inline-group {
+    .form-group {
+      display: inline-block;
+
+      width: 45%;
+    }
+  }
+
+  .form-group {
+    margin: 0 0 10px 10px;
+  }
+}
