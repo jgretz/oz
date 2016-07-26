@@ -14,11 +14,11 @@ export default (state = INITIAL_VALUE, action) => {
 
     case SAVE_OBJECT_SUCCESS: {
       const obj = action.payload.data;
-      const index = _.findIndex(state, o => o._id === obj._id); // eslint-disable-line
+      const index = _.findIndex(state, o => o._id === obj._id);
 
       const array = _.clone(state);
       if (index >= 0) {
-        array.splice(index, obj);
+        array.splice(index, 1, obj);
       } else {
         array.push(obj);
       }
@@ -28,7 +28,7 @@ export default (state = INITIAL_VALUE, action) => {
 
     case DELETE_OBJECT_SUCCESS: {
       const obj = action.payload.data;
-      const index = _.findIndex(state, o => o._id === obj._id); // eslint-disable-line
+      const index = _.findIndex(state, o => o._id === obj._id);
 
       const array = _.clone(state);
       _.pullAt(array, index);

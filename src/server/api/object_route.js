@@ -85,7 +85,7 @@ export default class ObjectRoute {
     }
 
     respond(
-      this.object.findByIdAndUpdate(id, req.body), res
+      this.object.findByIdAndUpdate(id, req.body, { new: true }), res
     );
   }
 

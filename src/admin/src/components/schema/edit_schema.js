@@ -8,33 +8,40 @@ import { browserHistory } from 'react-router';
 import { TextInput, SelectInput, CheckboxInput } from 'controls';
 import { saveObject, deleteObject } from 'actions';
 import { bind } from 'support';
-import constants from 'constants';
 
 class EditSchema extends Component {
   constructor(props) {
     super(props);
 
-    this.props.initialize(
-      this.defineObject(props.params.id),
-    );
-
     bind(this, [this.submit, this.renderFields]);
+  }
+
+  componentWillMount() {
+    this.props.initialize(
+      this.defineObject(this.props.params.id, this.props.objects),
+    );
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
       this.props.initialize(
-        this.defineObject(nextProps.params.id),
+        this.defineObject(nextProps.params.id, this.props.objects),
+      );
+    }
+
+    if (nextProps.objects !== this.props.objects) {
+      this.props.initialize(
+        this.defineObject(this.props.params.id, nextProps.objects),
       );
     }
   }
 
-  defineObject(id) {
+  defineObject(id, objects) {
     if (!id) {
       return {};
     }
 
-    return _.find(this.props.objects, o => o._id === id);
+    return _.find(objects, o => o._id === id);
   }
 
   // click handling
@@ -82,7 +89,7 @@ class EditSchema extends Component {
     return (
       <FormGroup key={index} className="inline-group">
         <TextInput name={`${field}.name`} label="Name" />
-        <SelectInput name={`${field}.field_type`} label="Type" map={constants.typeMap} />
+        <SelectInput name={`${field}.field_type`} label="Type" map={this.props.schemaTypes} />
         <CheckboxInput name={`${field}.required`} label="Required" />
       </FormGroup>
     );
@@ -129,6 +136,7 @@ class EditSchema extends Component {
 EditSchema.propTypes = {
   params: PropTypes.object.isRequired,
   objects: PropTypes.array.isRequired,
+  schemaTypes: PropTypes.object.isRequired,
 
   initialize: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
@@ -136,7 +144,7 @@ EditSchema.propTypes = {
   deleteObject: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ objects }) => ({ objects });
+const mapStateToProps = ({ objects, schemaTypes }) => ({ objects, schemaTypes });
 const connectedForm = connect(mapStateToProps, { saveObject, deleteObject })(EditSchema);
 
 export default reduxForm({
