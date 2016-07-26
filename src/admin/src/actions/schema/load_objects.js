@@ -6,7 +6,7 @@ export const LOAD_OBJECTS_FAILURE = 'LOAD_OBJECTS_FAILURE';
 export const loadObjects = () =>
   apiExecutor({
     verb: GET,
-    url: 'objects',
+    url: 'schema',
 
     successType: LOAD_OBJECTS_SUCCESS,
     failureType: LOAD_OBJECTS_FAILURE,

@@ -1,8 +1,15 @@
 import React, { PropTypes, Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import Menu from './menu';
+import { connect } from 'react-redux';
 
-class App extends Component { // eslint-disable-line
+import Menu from './menu';
+import { loadObjects } from 'actions';
+
+class App extends Component {
+  componentWillMount() {
+    this.props.loadObjects();
+  }
+
   render() {
     return (
       <Row>
@@ -22,6 +29,8 @@ class App extends Component { // eslint-disable-line
 App.propTypes = {
   route: PropTypes.object.isRequired,
   children: PropTypes.object,
+
+  loadObjects: PropTypes.func.isRequired,
 };
 
-export default App;
+export default connect(null, { loadObjects })(App);

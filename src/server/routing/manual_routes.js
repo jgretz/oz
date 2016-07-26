@@ -13,10 +13,6 @@ export default (app, router, config) => {
     }
 
     // attach the routes as defined
-    const route = routeInfo.instance;
-    const before = route['before'];
-    const after = route['after'];
-
-    defineRoute(router, route, path, before, after);
+    defineRoute(router, routeInfo.instance, path);
   });
 };

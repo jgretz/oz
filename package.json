@@ -25,9 +25,13 @@
   "homepage": "https://github.com/jgretz/zen-express#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "colors": "^1.1.2",
+    "cors": "^2.7.1",
     "express": "^4.14.0",
     "glob": "^7.0.3",
     "lodash": "^4.13.1",
+    "mongoose": "^4.5.7",
+    "mongoose-relationship": "^0.1.5",
     "object-assign": "^4.0.1",
     "promise": "^7.1.1",
     "shelljs": "^0.7.0"

@@ -22,13 +22,13 @@ class EditSchema extends Component {
   addField(fields) {
     fields.push({
       name: '',
-      type: 'string',
+      field_type: 'string',
       required: false,
     });
   }
 
   submit(form) {
-    console.log(form);
+    this.props.saveObject(form);
   }
 
   // render
@@ -55,7 +55,7 @@ class EditSchema extends Component {
     return (
       <FormGroup key={index} className="inline-group">
         <TextInput name={`${field}.name`} label="Name" />
-        <SelectInput name={`${field}.type`} label="Type" map={constants.typeMap} />
+        <SelectInput name={`${field}.field_type`} label="Type" map={constants.typeMap} />
         <CheckboxInput name={`${field}.required`} label="Required" />
       </FormGroup>
     );

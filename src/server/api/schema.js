@@ -1,17 +1,11 @@
-export default class Schema {
-  get(req, res) {
-    res.json([]);
-  }
+import mongoose from 'mongoose';
 
-  post(req, res) {
-    res.json([]);
-  }
-
-  put(req, res) {
-    res.json([]);
-  }
-
-  delete(req, res) {
-    res.json([]);
-  }
-}
+export const Schema = mongoose.model('schema', {
+  name: String,
+  icon: String,
+  fields: [{
+    name: String,
+    field_type: String,
+    required: Boolean
+  }],
+});

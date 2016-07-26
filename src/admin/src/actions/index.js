@@ -1,2 +1,2 @@
-export * from './objects/load_objects';
-export * from './objects/save_object';
+export * from './schema/load_objects';
+export * from './schema/save_object';
