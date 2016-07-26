@@ -1,10 +1,12 @@
+import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, FieldArray } from 'redux-form';
 import { Row, Col, Button, FormGroup } from 'react-bootstrap';
+import { browserHistory } from 'react-router';
 
 import { TextInput, SelectInput, CheckboxInput } from 'controls';
-import { saveObject } from 'actions';
+import { saveObject, deleteObject } from 'actions';
 import { bind } from 'support';
 import constants from 'constants';
 
@@ -12,10 +14,27 @@ class EditSchema extends Component {
   constructor(props) {
     super(props);
 
-    bind(this, [
-      this.submit,
-      this.renderFields, this.renderField,
-    ]);
+    this.props.initialize(
+      this.defineObject(props.params.id),
+    );
+
+    bind(this, [this.submit, this.renderFields]);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.id !== this.props.params.id) {
+      this.props.initialize(
+        this.defineObject(nextProps.params.id),
+      );
+    }
+  }
+
+  defineObject(id) {
+    if (!id) {
+      return {};
+    }
+
+    return _.find(this.props.objects, o => o._id === id);
   }
 
   // click handling
@@ -28,7 +47,15 @@ class EditSchema extends Component {
   }
 
   submit(form) {
-    this.props.saveObject(form);
+    this.props.saveObject(form).then((obj) => {
+      browserHistory.push(`/schema/${obj.data._id}`);
+    });
+  }
+
+  delete() {
+    this.props.deleteObject(this.props.params.id).then(() => {
+      browserHistory.push('/schema');
+    });
   }
 
   // render
@@ -62,19 +89,29 @@ class EditSchema extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, params: { id } } = this.props;
+
+    const deleteButton = () => {
+      if (id) {
+        return (
+          <Button bsStyle="danger" className="pull-right delete" onClick={this.delete.bind(this)}>
+            Delete
+          </Button>
+        );
+      }
+
+      return null;
+    };
+
     return (
       <div className="edit-schema">
         <Row>
           <Col xs={12}>
             <form onSubmit={handleSubmit(this.submit)}>
-              <Button
-                type="submit"
-                bsStyle="success"
-                className="pull-right save"
-              >
+              <Button type="submit" bsStyle="success" className="pull-right save">
                 Save
               </Button>
+              {deleteButton()}
               <h4>General</h4>
               <hr />
               <TextInput name="name" label="Name" />
@@ -90,11 +127,18 @@ class EditSchema extends Component {
 }
 
 EditSchema.propTypes = {
+  params: PropTypes.object.isRequired,
+  objects: PropTypes.array.isRequired,
+
+  initialize: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   saveObject: PropTypes.func.isRequired,
+  deleteObject: PropTypes.func.isRequired,
 };
 
-const connectedForm = connect(null, { saveObject })(EditSchema);
+const mapStateToProps = ({ objects }) => ({ objects });
+const connectedForm = connect(mapStateToProps, { saveObject, deleteObject })(EditSchema);
+
 export default reduxForm({
   form: 'edit_schema',
 })(connectedForm);

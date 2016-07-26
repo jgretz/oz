@@ -1,30 +1,54 @@
-import React, { Component } from 'react';
+import _ from 'lodash';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
-import { SideNav } from 'react-sidenav';
-
 class Menu extends Component {
-  componentWillMount() {}
+  onSelection(page, object) {
+    browserHistory.push(`/${page}/${object._id}`);
+  }
 
-  onSelection(selection) {
-    browserHistory.push(`/${selection.id}`);
+  newSchema() {
+    browserHistory.push('/schema');
+  }
+
+  buildNavigation(page, objects) {
+    return objects.map(obj =>
+    (
+      <li key={obj._id} onClick={this.onSelection.bind(this, page, obj)}>
+        {obj.name} <i className={`fa ${obj.icon}`} />
+      </li>
+    ));
   }
 
   render() {
-    const navigation = [{
-      id: 'schema', text: 'Schema', icon: 'fa fa-gear',
-      navlist: [
-        { id: 'editschema', text: 'Add New Object', icon: 'fa fa-plus' },
-      ],
-    }];
-
+    const sorted = _.sortBy(this.props.objects, 'name');
     return (
       <div className="menu">
-        <SideNav navs={navigation} onSelection={this.onSelection} />
+        <div>
+          <h2>Data</h2>
+          <ul>
+            {this.buildNavigation('data', sorted)}
+          </ul>
+        </div>
+        <div>
+          <h2>Schema</h2>
+          <ul>
+            <li onClick={this.newSchema}>
+              New<i className="fa fa-plus" />
+            </li>
+            {this.buildNavigation('schema', sorted)}
+          </ul>
+        </div>
       </div>
     );
   }
 }
 
-export default connect()(Menu);
+Menu.propTypes = {
+  objects: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = ({ objects }) => ({ objects });
+
+export default connect(mapStateToProps)(Menu);

@@ -1,9 +1,37 @@
 .menu {
+  position: relative;
+  top: -20px;
+
   min-height: 100%;
+  padding: 10px;
+
   background-color: $dark-gray;
+  color: $white;
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0 0 0 5px;
+
+    list-style: none;
+  }
+
+  li {
+    margin: 10px 0;
+
+    font-size: 1.2em;
+
+    cursor: pointer;
+    list-style-position: outside;
+  }
 
   .fa {
     float: right;
-    line-height: 20px;
+    line-height: 23px;
+
+    cursor: pointer;
   }
 }
