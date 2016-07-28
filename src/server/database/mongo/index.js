@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import promise from 'promise';
 import { typeMap } from '../../util/data_types';
 
+const schemaIndex = {};
+
 const objectFromModel = (model) => {
   const object = {};
   _.forOwn(model, (value, key) =>  {
@@ -40,8 +42,16 @@ export default class Mongo {
     mongoose.connect(this.config.connection);
   }
 
-  buildFromModel(model) {
-    return mongoose.model(model.name, objectFromModel(model.definition));
+  buildFromModel(modelDef) {
+    let model = schemaIndex[modelDef.name];
+    if (model) {
+      return model;
+    }
+
+    model = mongoose.model(modelDef.name, objectFromModel(modelDef.definition));
+    schemaIndex[modelDef.name] = model;
+
+    return model;
   }
 
   findById(model, id) {
