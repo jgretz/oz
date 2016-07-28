@@ -1,11 +1,7 @@
+import { types } from '../util/data_types';
+
 export default class SchemaTypesRoute {
   get(req, res) {
-    res.json({
-      string: 'String',
-      number: 'Number',
-      datetime: 'DateTime',
-      image: 'Image',
-      array: 'Array',
-    });
+    res.json(types);
   }
 }

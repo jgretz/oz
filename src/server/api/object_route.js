@@ -1,8 +1,4 @@
-import mongoose from 'mongoose';
-import promise from 'promise';
 import { logError } from '../util/log';
-
-mongoose.Promise = promise;
 
 // util
 const verifyId = (req, res) => {
@@ -27,10 +23,9 @@ const respond = (promise, res) => {
 
 // class
 export default class ObjectRoute {
-  constructor(object, dbConfig) {
-    this.object = object;
-
-    this.connection = mongoose.connect(dbConfig.connection);
+  constructor(objectDef, db) {
+    this.db = db;
+    this.object = db.buildFromModel(objectDef);
   }
 
   // gets
@@ -50,19 +45,19 @@ export default class ObjectRoute {
 
   getById(req, res) {
     respond(
-      this.object.findById(req.params.id), res
+      this.db.findById(this.object, req.params.id), res
     );
   }
 
   getByQuery(req, res) {
     respond(
-      this.object.find(req.query), res
+      this.db.find(this.object, req.query), res
     );
   }
 
   getAll(req, res) {
     respond(
-      this.object.find(), res
+      this.db.find(this.object), res
     );
   }
 
@@ -74,7 +69,7 @@ export default class ObjectRoute {
     }
 
     respond(
-      this.object.create(req.body), res
+      this.db.create(this.object, req.body), res
     );
   }
 
@@ -85,7 +80,7 @@ export default class ObjectRoute {
     }
 
     respond(
-      this.object.findByIdAndUpdate(id, req.body, { new: true }), res
+      this.db.update(this.object, id, req.body, { new: true }), res
     );
   }
 
@@ -96,7 +91,7 @@ export default class ObjectRoute {
     }
 
     respond(
-      this.object.findByIdAndRemove(id), res
+      this.db.delete(this.object, id), res
     );
   }
 }

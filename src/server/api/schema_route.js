@@ -1,8 +1,8 @@
 import ObjectRoute from './object_route';
-import { Schema } from './schema';
+import Schema from '../models/schema';
 
 export default class SchemaRoute extends ObjectRoute {
-  constructor(dbConfig) {
-    super(Schema, dbConfig);
+  constructor(db) {
+    super(Schema, db);
   }
 }
