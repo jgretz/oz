@@ -3,11 +3,11 @@ import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import Menu from './menu';
-import { loadObjects, loadSchemaTypes } from 'actions';
+import { loadSchema, loadSchemaTypes } from 'actions';
 
 class App extends Component {
   componentWillMount() {
-    this.props.loadObjects();
+    this.props.loadSchema();
     this.props.loadSchemaTypes();
   }
 
@@ -31,8 +31,8 @@ App.propTypes = {
   route: PropTypes.object.isRequired,
   children: PropTypes.object,
 
-  loadObjects: PropTypes.func.isRequired,
+  loadSchema: PropTypes.func.isRequired,
   loadSchemaTypes: PropTypes.func.isRequired,
 };
 
-export default connect(null, { loadObjects, loadSchemaTypes })(App);
+export default connect(null, { loadSchema, loadSchemaTypes })(App);

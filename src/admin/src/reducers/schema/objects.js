@@ -1,18 +1,18 @@
 import _ from 'lodash';
 import {
-  LOAD_OBJECTS_SUCCESS,
-  SAVE_OBJECT_SUCCESS,
-  DELETE_OBJECT_SUCCESS,
+  LOAD_SCHEMA_SUCCESS,
+  SAVE_SCHEMA_SUCCESS,
+  DELETE_SCHEMA_SUCCESS,
 } from 'actions' ;
 
 const INITIAL_VALUE = [];
 
 export default (state = INITIAL_VALUE, action) => {
   switch (action.type) {
-    case LOAD_OBJECTS_SUCCESS:
+    case LOAD_SCHEMA_SUCCESS:
       return action.payload.data;
 
-    case SAVE_OBJECT_SUCCESS: {
+    case SAVE_SCHEMA_SUCCESS: {
       const obj = action.payload.data;
       const index = _.findIndex(state, o => o._id === obj._id);
 
@@ -26,7 +26,7 @@ export default (state = INITIAL_VALUE, action) => {
       return array;
     }
 
-    case DELETE_OBJECT_SUCCESS: {
+    case DELETE_SCHEMA_SUCCESS: {
       const obj = action.payload.data;
       const index = _.findIndex(state, o => o._id === obj._id);
 

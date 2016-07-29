@@ -1,4 +1,5 @@
-export * from './schema/load_objects';
-export * from './schema/save_object';
-export * from './schema/delete_object';
 export * from './schema/load_schema_types';
+
+export * from './schema/load_schema';
+export * from './schema/save_schema';
+export * from './schema/delete_schema';

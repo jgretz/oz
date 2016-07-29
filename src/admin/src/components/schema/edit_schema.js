@@ -6,7 +6,7 @@ import { Row, Col, Button, FormGroup } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
 import { TextInput, SelectInput, CheckboxInput } from 'controls';
-import { saveObject, deleteObject } from 'actions';
+import { saveSchema, deleteSchema } from 'actions';
 import { bind } from 'support';
 
 class EditSchema extends Component {
@@ -54,13 +54,13 @@ class EditSchema extends Component {
   }
 
   submit(form) {
-    this.props.saveObject(form).then((obj) => {
+    this.props.saveSchema(form).then((obj) => {
       browserHistory.push(`/schema/${obj.data._id}`);
     });
   }
 
   delete() {
-    this.props.deleteObject(this.props.params.id).then(() => {
+    this.props.deleteSchema(this.props.params.id).then(() => {
       browserHistory.push('/schema');
     });
   }
@@ -140,12 +140,13 @@ EditSchema.propTypes = {
 
   initialize: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  saveObject: PropTypes.func.isRequired,
-  deleteObject: PropTypes.func.isRequired,
+
+  saveSchema: PropTypes.func.isRequired,
+  deleteSchema: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ objects, schemaTypes }) => ({ objects, schemaTypes });
-const connectedForm = connect(mapStateToProps, { saveObject, deleteObject })(EditSchema);
+const connectedForm = connect(mapStateToProps, { saveSchema, deleteSchema })(EditSchema);
 
 export default reduxForm({
   form: 'edit_schema',
