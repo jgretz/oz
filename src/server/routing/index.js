@@ -13,6 +13,7 @@ export default (app, config) => {
 
   apiRoutes(app, router, config);
   apiDynamicRoutes(app, router, config);
+
   manualRoutes(app, router, config);
 
   app.use(router);

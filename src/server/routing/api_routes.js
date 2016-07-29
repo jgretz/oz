@@ -1,4 +1,4 @@
-import defineRoute from './define_route';
+import defineRoute from './util/define_route';
 import SchemaRoute from '../api/schema_route';
 import SchemaTypesRoute from '../api/schema_types_route';
 import { DATABASE } from '../configure/database';

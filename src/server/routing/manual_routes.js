@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import loadFiles from '../util/load_files';
-import defineRoute from './define_route';
+import defineRoute from './util/define_route';
 
 export default (app, router, config) => {
   const routes = loadFiles([`${config.src}/routes`]);

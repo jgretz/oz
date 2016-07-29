@@ -1,21 +1,8 @@
 import _ from 'lodash';
-import defineRoute from './define_route';
+import registerModel from './util/register_model';
 import Schema from '../models/schema';
-import DynamicRoute from '../api/dynamic_route';
 import { DATABASE } from '../configure/database';
-
-const buildDynamicDef = (obj) => {
-  const def = {
-    name: obj.name,
-    definition: {}
-  };
-
-  _.forEach(obj.fields, (field) => {
-    def.definition[field.name] = field.field_type;
-  });
-
-  return def;
-};
+import { API_URL } from '../util/constants';
 
 export default (app, router, config) => {
   if (!config.admin || !config.db) {
@@ -23,14 +10,40 @@ export default (app, router, config) => {
   }
 
   const db = app.get(DATABASE);
-  const model = db.buildFromModel(Schema);
+  const schema = db.buildFromModel(Schema);
 
-  db.find(model).then((objects) => {
+  // register routes that are defined at launch
+  db.find(schema).then((objects) => {
     _.forEach(objects, (obj) => {
-      const route = obj.name.toLowerCase();
-      const modelDef = buildDynamicDef(obj);
+      registerModel(router, db, obj);
+    });
+  });
 
-      defineRoute(router, new DynamicRoute(modelDef, db), `/api/${route}`);
+  // add handler to catch routes that are defined during launch
+  app.use((req, res, next) => {
+    // if the route exists, just let it go there
+    const routes = _.uniq(
+      router.stack.map((layer) => {
+        return layer.route.path;
+      })
+    );
+    if (routes.includes(req.url)) {
+      next();
+      return;
+    }
+
+    // try to find the route in the db,
+    // if found, register it so we dont hit here again
+    const name = req.url.replace(API_URL, '');
+    const search = { $regex: new RegExp('^' + name, 'i') };
+    db.find(schema, { name: search }).then((result) => {
+      if (result.length === 0) {
+        next();
+        return;
+      }
+
+      registerModel(router, db, result[0]);
+      next();
     });
   });
 };
