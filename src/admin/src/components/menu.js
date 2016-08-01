@@ -22,7 +22,7 @@ class Menu extends Component {
   }
 
   render() {
-    const sorted = _.sortBy(this.props.objects, 'name');
+    const sorted = _.sortBy(this.props.schema, 'name');
     return (
       <div className="menu">
         <div>
@@ -46,9 +46,9 @@ class Menu extends Component {
 }
 
 Menu.propTypes = {
-  objects: PropTypes.array.isRequired,
+  schema: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = ({ objects }) => ({ objects });
+const mapStateToProps = ({ schema }) => ({ schema });
 
 export default connect(mapStateToProps)(Menu);

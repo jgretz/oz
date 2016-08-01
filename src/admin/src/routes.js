@@ -11,7 +11,7 @@ const routes = () =>
     <Route path="/schema" component={EditSchema} />
     <Route path="/schema/:id" component={EditSchema} />
 
-    <Route path="/data/:object" component={DataList} />
+    <Route path="/data/:id" component={DataList} />
     <Route path="/data/:object/:id" component={DataDetail} />
   </Route>;
 

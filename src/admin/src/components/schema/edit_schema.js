@@ -18,30 +18,30 @@ class EditSchema extends Component {
 
   componentWillMount() {
     this.props.initialize(
-      this.defineObject(this.props.params.id, this.props.objects),
+      this.defineObject(this.props.params.id, this.props.schema),
     );
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
       this.props.initialize(
-        this.defineObject(nextProps.params.id, this.props.objects),
+        this.defineObject(nextProps.params.id, this.props.schema),
       );
     }
 
-    if (nextProps.objects !== this.props.objects) {
+    if (nextProps.schema !== this.props.schema) {
       this.props.initialize(
-        this.defineObject(this.props.params.id, nextProps.objects),
+        this.defineObject(this.props.params.id, nextProps.schema),
       );
     }
   }
 
-  defineObject(id, objects) {
+  defineObject(id, schema) {
     if (!id) {
       return {};
     }
 
-    return _.find(objects, o => o._id === id);
+    return _.find(schema, o => o._id === id);
   }
 
   // click handling
@@ -135,7 +135,7 @@ class EditSchema extends Component {
 
 EditSchema.propTypes = {
   params: PropTypes.object.isRequired,
-  objects: PropTypes.array.isRequired,
+  schema: PropTypes.array.isRequired,
   schemaTypes: PropTypes.object.isRequired,
 
   initialize: PropTypes.func.isRequired,
@@ -145,7 +145,7 @@ EditSchema.propTypes = {
   deleteSchema: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ objects, schemaTypes }) => ({ objects, schemaTypes });
+const mapStateToProps = ({ schema, schemaTypes }) => ({ schema, schemaTypes });
 const connectedForm = connect(mapStateToProps, { saveSchema, deleteSchema })(EditSchema);
 
 export default reduxForm({
