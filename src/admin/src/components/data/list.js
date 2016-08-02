@@ -13,7 +13,7 @@ class DataList extends Component {
 
     this.state = { model: null };
 
-    bind(this, [this.loadProps, this.newObject]);
+    bind(this, [this.loadProps, this.renderHeader, this.newObject]);
   }
 
   // load
@@ -46,6 +46,10 @@ class DataList extends Component {
     browserHistory.push(`/data/${this.props.params.id}/new`);
   }
 
+  editObject(obj) {
+    browserHistory.push(`/data/${this.props.params.id}/${obj._id}`);
+  }
+
   // render
   renderHeader() {
     if (!this.state.model) {
@@ -53,9 +57,14 @@ class DataList extends Component {
     }
 
     return (
-      <h4>
-        {this.state.model.name}
-      </h4>
+      <div>
+        <Button bsStyle="success" className="pull-right" onClick={this.newObject}>
+          New
+        </Button>
+        <h4>
+          {this.state.model.name}
+        </h4>
+      </div>
     );
   }
 
@@ -70,7 +79,7 @@ class DataList extends Component {
     }
 
     return data.map((obj) => (
-      <li>
+      <li key={obj._id} onClick={this.editObject.bind(this, obj)}>
         {obj.name}
       </li>
     ));
@@ -81,9 +90,6 @@ class DataList extends Component {
       <div className="data-list">
         <Row>
           <Col xs={12}>
-            <Button bsStyle="success" className="pull-right" onClick={this.newObject}>
-              New
-            </Button>
             {this.renderHeader()}
           </Col>
         </Row>
