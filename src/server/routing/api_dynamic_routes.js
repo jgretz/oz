@@ -34,9 +34,8 @@ export default (app, router, config) => {
 
     // try to find the route in the db,
     // if found, register it so we dont hit here again
-    const name = req.url.replace(API_URL, '');
-    const search = { $regex: new RegExp('^' + name, 'i') };
-    db.find(schema, { name: search }).then((result) => {
+    const url = req.url.replace(API_URL, '');
+    db.find(schema, { url }).then((result) => {
       if (result.length === 0) {
         next();
         return;

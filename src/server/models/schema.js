@@ -2,6 +2,7 @@ export default {
   name: 'schema',
   definition: {
     name: 'string',
+    url: 'string',
     icon: 'string',
     fields: [{
       name: 'string',

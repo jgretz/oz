@@ -6,7 +6,7 @@ export const SAVE_OBJECT_FAILURE = 'SAVE_OBJECT_FAILURE';
 export const saveObject = (model, object) => {
   const id = object.id || object._id; // eslint-disable-line
   const verb = id ? PUT : POST;
-  const url = id ? `${model.name.toLowerCase()}/${id}` : model.name.toLowerCase();
+  const url = id ? `${model.url}/${id}` : model.url;
 
   return apiExecutor({
     verb, url,

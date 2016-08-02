@@ -38,7 +38,7 @@ class DataList extends Component {
     }
 
     this.setState({ model });
-    this.props.loadObjects(model.name);
+    this.props.loadObjects(model);
   }
 
   // click handlers

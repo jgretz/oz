@@ -44,7 +44,9 @@ class DataDetail extends Component {
     this.setState({ model });
 
     if (!this.isNew()) {
-      this.props.loadObject(model.name, id);
+      this.props.loadObject(model, id).then((response) => {
+        this.props.initialize(response.data);
+      });
     }
   }
 
@@ -138,6 +140,7 @@ DataDetail.propTypes = {
   deleteObject: PropTypes.func.isRequired,
 
   handleSubmit: PropTypes.func.isRequired,
+  initialize: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ schema, data }) => ({ schema, data });

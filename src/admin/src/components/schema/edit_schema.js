@@ -122,6 +122,7 @@ class EditSchema extends Component {
               <h4>General</h4>
               <hr />
               <TextInput name="name" label="Name" />
+              <TextInput name="url" label="Url" />
               <TextInput name="icon" label="Icon" />
               <br /><br />
               <FieldArray name="fields" component={this.renderFields} />

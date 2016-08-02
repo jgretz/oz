@@ -17,8 +17,7 @@ const buildDynamicDef = (obj) => {
 };
 
 export default (router, db, model) => {
-  const route = model.name.toLowerCase();
   const modelDef = buildDynamicDef(model);
 
-  defineRoute(router, new DynamicRoute(modelDef, db), `${API_URL}${route}`);
+  defineRoute(router, new DynamicRoute(modelDef, db), `${API_URL}${model.url}`);
 };
