@@ -20,6 +20,7 @@ export const CheckboxInput = ({ name, label }) =>
   <Field
     name={name}
     label={label}
+    type="checkbox"
     component={renderControl}
   />
 );
