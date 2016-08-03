@@ -1,9 +1,13 @@
-import { renderString } from './renderers';
 import { logError } from 'support';
+
+import {
+  renderString, renderPassword,
+} from './renderers';
 
 // map from type
 const map = {
   string: renderString,
+  password: renderPassword,
 };
 
 // bring it together
