@@ -7,7 +7,8 @@ export default {
     fields: [{
       name: 'string',
       field_type: 'string',
-      required: 'bool'
+      required: 'bool',
+      showInList: 'bool',
     }],
   },
 };

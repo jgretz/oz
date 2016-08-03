@@ -50,6 +50,7 @@ class EditSchema extends Component {
       name: '',
       field_type: 'string',
       required: false,
+      showInList: false,
     });
   }
 
@@ -91,6 +92,7 @@ class EditSchema extends Component {
         <TextInput name={`${field}.name`} label="Name" />
         <SelectInput name={`${field}.field_type`} label="Type" map={this.props.schemaTypes} />
         <CheckboxInput name={`${field}.required`} label="Required" />
+        <CheckboxInput name={`${field}.showInList`} label="Show In List" />
       </FormGroup>
     );
   }

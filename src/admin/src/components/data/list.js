@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Table } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
+import humanizePlus from 'humanize-plus';
 
 import { loadObjects } from 'actions';
 import { bind } from 'support';
@@ -13,7 +14,10 @@ class DataList extends Component {
 
     this.state = { model: null };
 
-    bind(this, [this.loadProps, this.renderHeader, this.newObject]);
+    bind(this, [
+      this.loadProps,
+      this.renderHeader, this.renderTableHeader, this.newObject,
+    ]);
   }
 
   // load
@@ -41,6 +45,10 @@ class DataList extends Component {
     this.props.loadObjects(model);
   }
 
+  displayProps() {
+    return _.filter(this.state.model.fields, f => f.showInList);
+  }
+
   // click handlers
   newObject() {
     browserHistory.push(`/data/${this.props.params.id}/new`);
@@ -58,7 +66,7 @@ class DataList extends Component {
 
     return (
       <div>
-        <Button bsStyle="success" className="pull-right" onClick={this.newObject}>
+        <Button bsStyle="success" className="pull-right new" onClick={this.newObject}>
           New
         </Button>
         <h4>
@@ -68,21 +76,60 @@ class DataList extends Component {
     );
   }
 
+  renderTableHeader() {
+    if (!this.state.model) {
+      return null;
+    }
+
+    return (
+      <thead>
+        <tr>
+          {
+            this.displayProps().map(field =>
+            (
+              <th key={field.name} className="header">
+                {humanizePlus.capitalize(field.name)}
+              </th>
+            ))
+          }
+          <th />
+        </tr>
+      </thead>
+    );
+  }
+
   renderObjects() {
     if (!this.state.model) {
       return null;
     }
 
-    const data = this.props.data[this.state.model.name.toLowerCase()];
+    const data = this.props.data[this.state.model.url];
     if (!data) {
       return null;
     }
 
-    return data.map((obj) => (
-      <li key={obj._id} onClick={this.editObject.bind(this, obj)}>
-        {obj.name}
-      </li>
-    ));
+    return (
+      <tbody>
+      {
+        data.map((obj) =>
+        (
+          <tr key={obj._id} className="row">
+            {
+              this.displayProps().map(field =>
+              (
+                <td key={field.name}>
+                  {obj[field.name]}
+                </td>
+              ))
+            }
+            <td className="edit" onClick={this.editObject.bind(this, obj)}>
+              Edit
+            </td>
+          </tr>
+        ))
+      }
+      </tbody>
+    );
   }
 
   render() {
@@ -91,13 +138,15 @@ class DataList extends Component {
         <Row>
           <Col xs={12}>
             {this.renderHeader()}
+            <hr />
           </Col>
         </Row>
         <Row>
           <Col xs={12}>
-            <ul>
+            <Table striped bordered condensed hover>
+              {this.renderTableHeader()}
               {this.renderObjects()}
-            </ul>
+            </Table>
           </Col>
         </Row>
       </div>

@@ -1,3 +1,16 @@
 .data-list {
-  
+  .new {
+    margin-top: -8px;
+  }
+
+  tr::before,
+  tr::after {
+    content: none;
+  }
+
+  .edit {
+    width: 75px;
+    text-align: center;
+    cursor: pointer;
+  }
 }
