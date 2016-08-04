@@ -1,5 +1,5 @@
 import React from 'react';
-import { PasswordInput } from '../password_input';
+import { TextInput } from '../text_input';
 
 export const renderPassword = (field) =>
-  <PasswordInput key={field.name} name={field.name} label={field.name} />;
+  <TextInput key={field.name} name={field.name} label={field.name} type="password" />;

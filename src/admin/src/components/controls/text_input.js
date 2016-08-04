@@ -7,7 +7,7 @@ const renderControl = ({ input }) =>
 (
   <FormGroup>
     <ControlLabel>{input.label}</ControlLabel>
-    <FormControl type="text" {...input} />
+    <FormControl type={input.type || 'text'} {...input} />
   </FormGroup>
 );
 
@@ -16,11 +16,12 @@ renderControl.propTypes = {
 };
 
 // ReduxForm control
-export const TextInput = ({ name, label }) =>
+export const TextInput = ({ name, label, type }) =>
 (
   <Field
     name={name}
     label={label}
+    type={type}
     component={renderControl}
   />
 );
@@ -28,4 +29,5 @@ export const TextInput = ({ name, label }) =>
 TextInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };

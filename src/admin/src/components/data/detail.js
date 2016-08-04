@@ -69,6 +69,10 @@ class DataDetail extends Component {
 
   // render
   renderFields() {
+    if (!this.state.model) {
+      return null;
+    }
+
     return (
       <div>
       {

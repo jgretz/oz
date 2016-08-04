@@ -2,12 +2,15 @@ import React, { PropTypes } from 'react';
 import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { Field } from 'redux-form';
 
+// Number.MIN_SAFE_INTEGER
+// Number.MAX_SAFE_INTEGER
+
 // inner control
 const renderControl = ({ input }) =>
 (
   <FormGroup>
     <ControlLabel>{input.label}</ControlLabel>
-    <FormControl type="password" {...input} />
+    <FormControl type="number" pattern="[0-9]*" inputMode="numeric" {...input} />
   </FormGroup>
 );
 
@@ -16,7 +19,7 @@ renderControl.propTypes = {
 };
 
 // ReduxForm control
-export const PasswordInput = ({ name, label }) =>
+export const NumberInput = ({ name, label }) =>
 (
   <Field
     name={name}
@@ -25,7 +28,7 @@ export const PasswordInput = ({ name, label }) =>
   />
 );
 
-PasswordInput.propTypes = {
+NumberInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
 };

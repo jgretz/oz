@@ -1,13 +1,14 @@
 import { logError } from 'support';
 
 import {
-  renderString, renderPassword,
+  renderString, renderPassword, renderNumber,
 } from './renderers';
 
 // map from type
 const map = {
   string: renderString,
   password: renderPassword,
+  number: renderNumber,
 };
 
 // bring it together
