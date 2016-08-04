@@ -1,7 +1,8 @@
 import { logError } from 'support';
 
 import {
-  renderString, renderPassword, renderNumber, renderRichText,
+  renderString, renderPassword, renderNumber, renderRichText, renderDateTime,
+  renderDate, renderTime,
 } from './renderers';
 
 // map from type
@@ -10,6 +11,9 @@ const map = {
   password: renderPassword,
   number: renderNumber,
   richText: renderRichText,
+  datetime: renderDateTime,
+  date: renderDate,
+  time: renderTime,
 };
 
 // bring it together
