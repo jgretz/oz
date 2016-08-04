@@ -4,20 +4,16 @@ import { connect } from 'react-redux';
 import { Row, Col, Button, Table } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 import humanizePlus from 'humanize-plus';
+import autobind from 'class-autobind';
 
 import { loadObjects } from 'actions';
-import { bind } from 'support';
 
 class DataList extends Component {
   constructor(props) {
     super(props);
+    autobind(this);
 
     this.state = { model: null };
-
-    bind(this, [
-      this.loadProps,
-      this.renderHeader, this.renderTableHeader, this.newObject,
-    ]);
   }
 
   // load

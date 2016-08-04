@@ -2,9 +2,6 @@ import React, { PropTypes } from 'react';
 import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { Field } from 'redux-form';
 
-// Number.MIN_SAFE_INTEGER
-// Number.MAX_SAFE_INTEGER
-
 // inner control
 const renderControl = ({ input }) =>
 (

@@ -4,16 +4,16 @@ import { connect } from 'react-redux';
 import { reduxForm, FieldArray } from 'redux-form';
 import { Row, Col, Button, FormGroup } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
+import autobind from 'class-autobind';
 
 import { TextInput, SelectInput, CheckboxInput } from 'controls';
 import { saveSchema, deleteSchema } from 'actions';
-import { bind } from 'support';
 
 class EditSchema extends Component {
   constructor(props) {
     super(props);
 
-    bind(this, [this.submit, this.renderFields]);
+    autobind(this);
   }
 
   componentWillMount() {

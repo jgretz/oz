@@ -4,20 +4,17 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { Row, Col, Button } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
+import autobind from 'class-autobind';
 
 import { loadObject, saveObject, deleteObject } from 'actions';
-import { bind } from 'support';
 import { renderField } from 'controls';
 
 class DataDetail extends Component {
   constructor(props) {
     super(props);
+    autobind(this);
 
     this.state = { model: null, object: {} };
-
-    bind(this, [
-      this.loadProps, this.renderHeader, this.renderFields, this.save,
-    ]);
   }
 
   // load

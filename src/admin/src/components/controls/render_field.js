@@ -1,7 +1,7 @@
 import { logError } from 'support';
 
 import {
-  renderString, renderPassword, renderNumber,
+  renderString, renderPassword, renderNumber, renderRichText,
 } from './renderers';
 
 // map from type
@@ -9,6 +9,7 @@ const map = {
   string: renderString,
   password: renderPassword,
   number: renderNumber,
+  richText: renderRichText,
 };
 
 // bring it together
