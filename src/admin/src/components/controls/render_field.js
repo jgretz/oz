@@ -21,7 +21,6 @@ const map = {
 export const renderField = (field) => {
   const render = map[field.field_type];
   if (!render) {
-    console.log(map);
     logError(`Unable to map ${field.field_type} on field ${field.name}`);
     return null;
   }

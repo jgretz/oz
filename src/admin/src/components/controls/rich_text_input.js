@@ -1,9 +1,11 @@
 import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
-import { FormGroup, ControlLabel } from 'react-bootstrap';
+import { FormGroup } from 'react-bootstrap';
 import RichTextEditor from 'react-rte';
 import { Field } from 'redux-form';
 import autobind from 'class-autobind';
+
+import { InputLabel } from './input-label';
 
 const FORMAT = 'html';
 
@@ -72,7 +74,7 @@ SimpleRte.propTypes = {
 const renderControl = ({ input }) =>
 (
   <FormGroup>
-    <ControlLabel>{input.label}</ControlLabel>
+    <InputLabel text={input.label} />
     <SimpleRte
       value={input.value}
       onChange={input.onChange}

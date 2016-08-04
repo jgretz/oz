@@ -2,11 +2,15 @@ import React, { PropTypes } from 'react';
 import { FormGroup, Checkbox } from 'react-bootstrap';
 import { Field } from 'redux-form';
 
+import { InputLabel } from './input-label';
+
 // inner control
 const renderControl = ({ input }) =>
 (
   <FormGroup>
-    <Checkbox {...input}>{input.label}</Checkbox>
+    <Checkbox {...input}>
+      <InputLabel text={input.label} />
+    </Checkbox>
   </FormGroup>
 );
 

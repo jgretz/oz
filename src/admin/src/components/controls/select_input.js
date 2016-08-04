@@ -1,13 +1,15 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
-import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { FormGroup, FormControl } from 'react-bootstrap';
 import { Field } from 'redux-form';
+
+import { InputLabel } from './input-label';
 
 // inner control
 const renderControl = ({ input }) =>
 (
   <FormGroup>
-    <ControlLabel>{input.label}</ControlLabel>
+    <InputLabel text={input.label} />
     <FormControl componentClass="select" {..._.omit(input, ['map', 'label'])}>
     {
       _.map(input.map, (value, key) => <option key={key} value={key}>{value}</option>)

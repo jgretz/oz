@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
-import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { FormGroup, FormControl } from 'react-bootstrap';
 import { Field } from 'redux-form';
+
+import { InputLabel } from './input-label';
 
 // inner control
 const renderControl = ({ input }) =>
 (
   <FormGroup>
-    <ControlLabel>{input.label}</ControlLabel>
+    <InputLabel text={input.label} />
     <FormControl type="number" pattern="[0-9]*" inputMode="numeric" {...input} />
   </FormGroup>
 );

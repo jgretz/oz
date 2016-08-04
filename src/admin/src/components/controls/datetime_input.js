@@ -1,13 +1,15 @@
 import React, { PropTypes } from 'react';
-import { FormGroup, ControlLabel } from 'react-bootstrap';
+import { FormGroup } from 'react-bootstrap';
 import { Field } from 'redux-form';
 import DateTimeField from 'react-bootstrap-datetimepicker';
+
+import { InputLabel } from './input-label';
 
 // inner control
 const renderControl = ({ input }) =>
 (
   <FormGroup>
-    <ControlLabel>{input.label}</ControlLabel>
+    <InputLabel text={input.label} />
     <DateTimeField {...input} />
   </FormGroup>
 );
