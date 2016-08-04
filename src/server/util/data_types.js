@@ -3,12 +3,12 @@ export const typeMap = {
   richText: String,
   password: String,
   number: Number,
+  bool: Boolean,
   datetime: Date,
   date: Date,
   time: Date,
   image: String,
-  array: Array,
-  bool: Boolean
+  array: Array
 };
 
 export const types = {
@@ -16,10 +16,10 @@ export const types = {
   richText: 'Rich Text',
   password: 'Password',
   number: 'Number',
+  bool: 'Boolean',
   datetime: 'DateTime',
   date: 'Date',
   time: 'Time',
   image: 'Image',
-  array: 'Array',
-  boolean: 'Boolean'
+  array: 'Array'
 };

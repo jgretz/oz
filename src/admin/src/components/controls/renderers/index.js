@@ -5,3 +5,4 @@ export * from './render_rich_text';
 export * from './render_datetime';
 export * from './render_date';
 export * from './render_time';
+export * from './render_boolean';
