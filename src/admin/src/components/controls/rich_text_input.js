@@ -34,7 +34,6 @@ class SimpleRte extends Component {
     }
 
     if (this.state.htmlValue === newProps.value) {
-      console.log('yay');
       return;
     }
 
