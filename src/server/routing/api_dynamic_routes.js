@@ -2,6 +2,7 @@ import _ from 'lodash';
 import registerModel from './util/register_model';
 import Schema from '../models/schema';
 import { DATABASE } from '../configure/database';
+import { UPLOADS } from '../configure/uploads';
 import { API_URL } from '../util/constants';
 
 export default (app, router, config) => {
@@ -10,12 +11,13 @@ export default (app, router, config) => {
   }
 
   const db = app.get(DATABASE);
+  const upload = app.get(UPLOADS);
   const schema = db.buildFromModel(Schema);
 
   // register routes that are defined at launch
   db.find(schema).then((objects) => {
     _.forEach(objects, (obj) => {
-      registerModel(router, db, obj);
+      registerModel(router, db, upload, obj);
     });
   });
 
@@ -41,7 +43,7 @@ export default (app, router, config) => {
         return;
       }
 
-      registerModel(router, db, result[0]);
+      registerModel(router, db, upload, result[0]);
       next();
     });
   });

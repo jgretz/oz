@@ -16,8 +16,8 @@ const buildDynamicDef = (obj) => {
   return def;
 };
 
-export default (router, db, model) => {
+export default (router, db, upload, model) => {
   const modelDef = buildDynamicDef(model);
 
-  defineRoute(router, new DynamicRoute(modelDef, db), `${API_URL}${model.url}`);
+  defineRoute(router, new DynamicRoute(modelDef, db), `${API_URL}${model.url}`, upload);
 };

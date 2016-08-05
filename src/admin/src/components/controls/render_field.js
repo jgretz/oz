@@ -2,7 +2,7 @@ import { logError } from 'support';
 
 import {
   renderString, renderPassword, renderNumber, renderRichText, renderDateTime,
-  renderDate, renderTime, renderBoolean,
+  renderDate, renderTime, renderBoolean, renderImage,
 } from './renderers';
 
 // map from type
@@ -14,7 +14,8 @@ const map = {
   datetime: renderDateTime,
   date: renderDate,
   time: renderTime,
-  bool: renderBoolean, // eslint-disable-line
+  bool: renderBoolean,
+  image: renderImage,
 };
 
 // bring it together

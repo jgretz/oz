@@ -1,4 +1,8 @@
+import _ from 'lodash';
+
+import { UPLOADS } from '../configure/uploads';
 import { logError } from '../util/log';
+
 
 // util
 const verifyId = (req, res) => {
@@ -6,7 +10,7 @@ const verifyId = (req, res) => {
   // can be a little forgiving
   const id = req.params.id || req.body.id || req.body._id;
   if (!id) {
-    res.status(500).send('PUT requires an id of the document to update');
+    res.status(500).send('PUT & DELETE require an id of the document to update');
     return null;
   }
 
@@ -19,6 +23,17 @@ const respond = (promise, res) => {
       res.status(500).send(err);
       logError(err);
     });
+};
+
+const updateBodyWithFiles = (req) => {
+  if (!req.files || req.files.length === 0) {
+    return;
+  }
+
+  const upload = req.app.get(UPLOADS);
+  _.forEach(req.files, (file) => {
+    req.body[file.fieldname] = upload.pointerToFile(file);
+  });
 };
 
 // class
@@ -63,10 +78,13 @@ export default class ObjectRoute {
 
   // CUD operations
   post(req, res) {
+    // allow this to happen (you can't put files so we have to support it)
     if (req.params.id) {
-      res.status(500).send('Use a PUT to update the document');
+      this.put(req, res);
       return;
     }
+
+    updateBodyWithFiles(req);
 
     respond(
       this.db.create(this.object, req.body), res
@@ -78,6 +96,8 @@ export default class ObjectRoute {
     if (!id) {
       return;
     }
+
+    updateBodyWithFiles(req);
 
     respond(
       this.db.update(this.object, id, req.body, { new: true }), res

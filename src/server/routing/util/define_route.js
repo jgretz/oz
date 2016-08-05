@@ -2,8 +2,9 @@ import _ from 'lodash';
 
 const verbs = ['get','post','put','delete'];
 const needsIdRoute = ['get','put','delete'];
+const allowsFileUpload = ['post'];
 
-export default (router, route, url) => {
+export default (router, route, url, upload) => {
   const before = route['before'];
   const after = route['after'];
 
@@ -24,6 +25,12 @@ export default (router, route, url) => {
       }
     };
 
+    // handle file upload (this needs to be before the json)
+    if (upload && _.includes(allowsFileUpload, verb)) {
+      upload.addRoute(router, verb, url, handler);
+    }
+
+    // default json handler
     router[verb](url, handler);
 
     // handle get /{id}

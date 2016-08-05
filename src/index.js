@@ -34,4 +34,10 @@ export default (options) => {
 //     type: 'mongo',
 //     connection: ''
 //   }
+//   uploads: {
+//    type: 'file',
+//    route: '/files',
+//    path: '/files'
+//   }
+//
 // };

@@ -84,8 +84,6 @@ class DataDetail extends Component {
       return null;
     }
 
-    const { handleSubmit } = this.props;
-
     const deleteButton = () => {
       if (!this.isNew()) {
         return (
@@ -101,7 +99,7 @@ class DataDetail extends Component {
     return (
       <div>
         <h4>
-          <Button bsStyle="success" className="pull-right save" onClick={handleSubmit(this.save)}>
+          <Button bsStyle="success" type="submit" className="pull-right save">
             Save
           </Button>
           {deleteButton()}
@@ -114,18 +112,22 @@ class DataDetail extends Component {
   }
 
   render() {
+    const { handleSubmit } = this.props;
+
     return (
       <div className="data-detail">
-        <Row>
-          <Col xs={12}>
-            {this.renderHeader()}
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12}>
-            {this.renderFields()}
-          </Col>
-        </Row>
+        <form onSubmit={handleSubmit(this.save)}>
+          <Row>
+            <Col xs={12}>
+              {this.renderHeader()}
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              {this.renderFields()}
+            </Col>
+          </Row>
+        </form>
       </div>
     );
   }

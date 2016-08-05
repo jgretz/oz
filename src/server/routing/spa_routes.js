@@ -8,7 +8,7 @@ export default (app, router, config) => {
 
   // map to the spa app
   app.use(express.static(`${config.spa.path}`));
-  app.get('*', function(req, res) {
+  app.get('*', (req, res) => {
     res.status(200).sendFile(path.join(`${config.spa.path}/${config.spa.index}`));
   });
 };

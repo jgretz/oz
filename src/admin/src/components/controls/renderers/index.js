@@ -6,3 +6,4 @@ export * from './render_datetime';
 export * from './render_date';
 export * from './render_time';
 export * from './render_boolean';
+export * from './render_image';

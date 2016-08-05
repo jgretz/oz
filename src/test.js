@@ -7,5 +7,11 @@ zenExpress({
   db: {
     type: 'mongo',
     connection: 'mongodb://oz-test:34dnjJSTko9BWYwBVPzN0@ds023465.mlab.com:23465/oz-test'
+  },
+
+  uploads: {
+    type: 'file',
+    route: '/files',
+    path: `${__dirname}/../lib/files`
   }
 });

@@ -8,6 +8,7 @@ export const typeMap = {
   date: Date,
   time: Date,
   image: String,
+  peer: String,
   array: Array
 };
 
@@ -21,5 +22,6 @@ export const types = {
   date: 'Date',
   time: 'Time',
   image: 'Image',
+  peer: 'Peer',
   array: 'Array'
 };
