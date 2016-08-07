@@ -21,15 +21,34 @@
     margin: -8px 10px 0 0;
   }
 
-  .inline-group {
-    .form-group {
-      display: inline-block;
+  .field-group {
+    margin-bottom: 30px;
 
-      width: 45%;
+    .delete {
+      margin-top: 24px;
     }
   }
 
-  .form-group {
-    margin: 0 0 10px 10px;
+  .field-group-checkboxes {
+    .form-group {
+      margin-bottom: 0;
+      padding: 0;
+    }
+
+    .checkbox {
+      margin: 0;
+
+      input[type='checkbox'] {
+        margin-left: 0;
+      }
+    }
+
+    label {
+      padding-left: 0;
+    }
+
+    .control-label {
+      padding-left: 20px;
+    }
   }
 }

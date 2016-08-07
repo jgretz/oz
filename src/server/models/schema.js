@@ -7,7 +7,9 @@ export default {
     fields: [{
       name: 'string',
       field_type: 'string',
+      peer: 'string',
       required: 'bool',
+      identity: 'bool',
       showInList: 'bool',
     }],
   },

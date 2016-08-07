@@ -7,3 +7,5 @@ export * from './render_date';
 export * from './render_time';
 export * from './render_boolean';
 export * from './render_image';
+export * from './render_peer';
+export * from './render_array';

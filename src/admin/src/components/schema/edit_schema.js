@@ -8,6 +8,7 @@ import autobind from 'class-autobind';
 
 import { TextInput, SelectInput, CheckboxInput } from 'controls';
 import { saveSchema, deleteSchema } from 'actions';
+import { filterById } from 'support';
 
 class EditSchema extends Component {
   constructor(props) {
@@ -18,20 +19,20 @@ class EditSchema extends Component {
 
   componentWillMount() {
     this.props.initialize(
-      this.defineObject(this.props.params.id, this.props.schema),
+      filterById(this.props.schema, this.props.params.id, {}),
     );
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
       this.props.initialize(
-        this.defineObject(nextProps.params.id, this.props.schema),
+        filterById(this.props.schema, nextProps.params.id, {}),
       );
     }
 
     if (nextProps.schema !== this.props.schema) {
       this.props.initialize(
-        this.defineObject(this.props.params.id, nextProps.schema),
+        filterById(nextProps.schema, this.props.params.id, {}),
       );
     }
   }
@@ -49,7 +50,9 @@ class EditSchema extends Component {
     fields.push({
       name: '',
       field_type: 'string',
+      peer: null,
       required: false,
+      identity: false,
       showInList: false,
     });
   }
@@ -64,6 +67,10 @@ class EditSchema extends Component {
     this.props.deleteSchema(this.props.params.id).then(() => {
       browserHistory.push('/schema');
     });
+  }
+
+  deleteField(fields, index) {
+    fields.remove(index);
   }
 
   // render
@@ -81,18 +88,61 @@ class EditSchema extends Component {
           </Button>
         </h4>
         <hr />
-         {fields.map((field, index) => this.renderField(field, index))}
+         {fields.map((field, index) => this.renderField(fields, field, index))}
       </div>
     );
   }
 
-  renderField(field, index) {
+  renderField(fields, field, index) {
+    const needsPeerSelection = ['peer', 'array'];
+    const renderPeerSelection = () => {
+      if (!this.props.fields) {
+        return null;
+      }
+
+      const fieldData = this.props.fields[index];
+      if (!_.includes(needsPeerSelection, fieldData.field_type)) {
+        return null;
+      }
+
+      const objects = _.filter(this.props.schema, obj => obj._id !== this.props.params.id);
+      const values = _.map(objects, (schemaObj) => ({ key: schemaObj._id, value: schemaObj.name }));
+
+      return <SelectInput name={`${field}.peer`} label="Relation" array={values} />;
+    };
+
     return (
-      <FormGroup key={index} className="inline-group">
-        <TextInput name={`${field}.name`} label="Name" />
-        <SelectInput name={`${field}.field_type`} label="Type" map={this.props.schemaTypes} />
-        <CheckboxInput name={`${field}.required`} label="Required" />
-        <CheckboxInput name={`${field}.showInList`} label="Show In List" />
+      <FormGroup key={index} className="field-group">
+        <Row>
+          <Col xs={4}>
+            <TextInput name={`${field}.name`} label="Name" />
+          </Col>
+          <Col xs={3}>
+            <SelectInput name={`${field}.field_type`} label="Type" map={this.props.schemaTypes} />
+          </Col>
+          <Col xs={3}>
+            <SelectInput name={`${field}.permission`} label="Permission" />
+          </Col>
+          <Col xs={2}>
+            <Button
+              bsStyle="danger"
+              className="pull-right delete"
+              onClick={this.deleteField.bind(this, fields, index)}
+            >
+              Delete
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={4} className="field-group-checkboxes">
+            <CheckboxInput name={`${field}.required`} label="Required" />
+            <CheckboxInput name={`${field}.identity`} label="Identity" />
+            <CheckboxInput name={`${field}.showInList`} label="Show In List" />
+          </Col>
+          <Col xs={3}>
+            {renderPeerSelection()}
+          </Col>
+        </Row>
       </FormGroup>
     );
   }
@@ -140,6 +190,7 @@ EditSchema.propTypes = {
   params: PropTypes.object.isRequired,
   schema: PropTypes.array.isRequired,
   schemaTypes: PropTypes.object.isRequired,
+  fields: PropTypes.array,
 
   initialize: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
@@ -148,9 +199,19 @@ EditSchema.propTypes = {
   deleteSchema: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ schema, schemaTypes }) => ({ schema, schemaTypes });
-const connectedForm = connect(mapStateToProps, { saveSchema, deleteSchema })(EditSchema);
-
-export default reduxForm({
+const form = reduxForm({
   form: 'edit_schema',
-})(connectedForm);
+})(EditSchema);
+
+const mapStateToProps = (state) => {
+  const schemaForm = state.form.edit_schema;
+  const values = schemaForm ? schemaForm.values : null;
+
+  return {
+    schema: state.schema,
+    schemaTypes: state.schemaTypes,
+    fields: values ? values.fields : null,
+  };
+};
+
+export default connect(mapStateToProps, { saveSchema, deleteSchema })(form);

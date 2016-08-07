@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
@@ -8,6 +7,7 @@ import autobind from 'class-autobind';
 
 import { loadObject, saveObject, deleteObject } from 'actions';
 import { renderField } from 'controls';
+import { filterById } from 'support';
 
 class DataDetail extends Component {
   constructor(props) {
@@ -32,8 +32,8 @@ class DataDetail extends Component {
     }
   }
 
-  loadProps(schema, object, id) {
-    const model = _.find(schema, m => m._id === object);
+  loadProps(schema, objectId, id) {
+    const model = filterById(schema, objectId);
     if (!model) {
       return;
     }

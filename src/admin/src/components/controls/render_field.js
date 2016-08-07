@@ -2,7 +2,7 @@ import { logError } from 'support';
 
 import {
   renderString, renderPassword, renderNumber, renderRichText, renderDateTime,
-  renderDate, renderTime, renderBoolean, renderImage,
+  renderDate, renderTime, renderBoolean, renderImage, renderPeer, renderArray,
 } from './renderers';
 
 // map from type
@@ -16,6 +16,8 @@ const map = {
   time: renderTime,
   bool: renderBoolean,
   image: renderImage,
+  peer: renderPeer,
+  array: renderArray,
 };
 
 // bring it together

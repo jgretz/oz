@@ -6,14 +6,24 @@ import { Field } from 'redux-form';
 import { InputLabel } from './input-label';
 
 // inner control
+const renderSource = (map, array) => {
+  if (map) {
+    return _.map(map, (value, key) => <option key={key} value={key}>{value}</option>);
+  }
+
+  if (array) {
+    return _.map(array, (obj) => <option key={obj.key} value={obj.key}>{obj.value}</option>);
+  }
+
+  return null;
+};
+
 const renderControl = ({ input }) =>
 (
   <FormGroup>
     <InputLabel text={input.label} />
-    <FormControl componentClass="select" {..._.omit(input, ['map', 'label'])}>
-    {
-      _.map(input.map, (value, key) => <option key={key} value={key}>{value}</option>)
-    }
+    <FormControl componentClass="select" {..._.omit(input, ['map', 'array', 'label'])}>
+      {renderSource(input.map, input.array)}
     </FormControl>
   </FormGroup>
 );
@@ -23,12 +33,13 @@ renderControl.propTypes = {
 };
 
 // ReduxForm control
-export const SelectInput = ({ name, label, map }) =>
+export const SelectInput = ({ name, label, map, array }) =>
 (
   <Field
     name={name}
     label={label}
     map={map}
+    array={array}
     component={renderControl}
   />
 );
@@ -36,5 +47,6 @@ export const SelectInput = ({ name, label, map }) =>
 SelectInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  map: PropTypes.object.isRequired,
+  map: PropTypes.object,
+  array: PropTypes.array,
 };

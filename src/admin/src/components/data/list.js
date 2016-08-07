@@ -7,6 +7,7 @@ import humanizePlus from 'humanize-plus';
 import autobind from 'class-autobind';
 
 import { loadObjects } from 'actions';
+import { filterById } from 'support';
 
 class DataList extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class DataList extends Component {
   }
 
   loadProps(schema, id) {
-    const model = _.find(schema, m => m._id === id);
+    const model = filterById(schema, id, null);
     if (!model) {
       return;
     }
