@@ -6,7 +6,7 @@ import humanizePlus from 'humanize-plus';
 export const InputLabel = ({ text }) =>
 (
   <ControlLabel>
-    {humanizePlus.capitalize(text)}
+    {humanizePlus.capitalizeAll(text)}
   </ControlLabel>
 );
 

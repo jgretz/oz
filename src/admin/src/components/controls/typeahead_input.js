@@ -14,9 +14,17 @@ const renderControl = ({ input }) => {
 
   const selected = _.filter(input.options, o => o.id === input.value);
 
+  const renderLabel = () => {
+    if (input.hideLabel) {
+      return null;
+    }
+
+    return <InputLabel text={input.label} />;
+  };
+
   return (
     <FormGroup>
-      <InputLabel text={input.label} />
+      {renderLabel()}
       <Typeahead
         selected={selected}
         options={input.options}
@@ -32,11 +40,12 @@ renderControl.propTypes = {
 };
 
 // ReduxForm control
-export const TypeAheadInput = ({ name, label, data }) =>
+export const TypeAheadInput = ({ name, label, hideLabel, data }) =>
 (
   <Field
     name={name}
     label={label}
+    hideLabel={hideLabel}
     options={data || []}
     component={renderControl}
   />
@@ -45,5 +54,6 @@ export const TypeAheadInput = ({ name, label, data }) =>
 TypeAheadInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  hideLabel: PropTypes.bool,
   data: PropTypes.array,
 };

@@ -37,14 +37,6 @@ class EditSchema extends Component {
     }
   }
 
-  defineObject(id, schema) {
-    if (!id) {
-      return {};
-    }
-
-    return _.find(schema, o => o._id === id);
-  }
-
   // click handling
   addField(fields) {
     fields.push({
