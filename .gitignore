@@ -39,3 +39,4 @@ jspm_packages
 # Output
 lib/
 admin/lib/
+admin/src/styles/style.min.css
