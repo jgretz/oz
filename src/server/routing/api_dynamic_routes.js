@@ -4,6 +4,7 @@ import Schema from '../models/schema';
 import { DATABASE } from '../configure/database';
 import { UPLOADS } from '../configure/uploads';
 import { API_URL } from '../util/constants';
+import routeExists from '../util/route_exists';
 
 export default (app, router, config) => {
   if (!config.admin || !config.db) {
@@ -24,12 +25,7 @@ export default (app, router, config) => {
   // add handler to catch routes that are defined during launch
   app.use((req, res, next) => {
     // if the route exists, just let it go there
-    const routes = _.uniq(
-      router.stack.map((layer) => {
-        return layer.route.path;
-      })
-    );
-    if (routes.includes(req.url)) {
+    if (routeExists(router, req)) {
       next();
       return;
     }

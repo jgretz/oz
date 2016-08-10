@@ -1,7 +1,5 @@
-import _ from 'lodash';
 import path from 'path';
-
-import { API_URL, ADMIN_URL } from '../util/constants';
+import routeExists from '../util/route_exists';
 
 export default (app, router, config) => {
   if (!config.spa) {
@@ -9,8 +7,8 @@ export default (app, router, config) => {
   }
 
   router['get']('*', (req, res, next) => {
-    var ignore = [ADMIN_URL, API_URL];
-    if (_.some(ignore, i => req.url.startsWith(i))) {
+    // if the route exists, just let it go there
+    if (routeExists(router, req)) {
       next();
       return;
     }
