@@ -28,7 +28,7 @@ fs.readFile('src/index.html', 'utf8', (err, markup) => {
   // since a separate spreadsheet is only utilized
   // for the production build, need to dynamically add this here.
   $('head').prepend('<link rel="stylesheet" href="/admin/styles.css">');
-  $('script[src="bundle.js"]').attr('src', '/admin/bundle.js');
+  $('script[src="/bundle.js"]').attr('src', '/admin/bundle.js');
 
   // write
   fs.writeFile(`${dir}/index.html`, $.html(), 'utf8', function (err) {

@@ -15,7 +15,6 @@ export default (app, router, config) => {
   });
 
   app.get('*/admin', function(req, res) {
-    console.log('yay');
     res.status(200).sendFile(path.join(__dirname, '../../admin/index.html'));
   });
 };
