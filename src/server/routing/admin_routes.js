@@ -19,7 +19,7 @@ export default (app, router, config) => {
   };
 
   _.forOwn(map, (file, url) => {
-    router['get'](`*/${ADMIN_URL}${url}`, (req, res) => {
+    router['get'](`*${ADMIN_URL}${url}`, (req, res) => {
       res.status(200).sendFile(path.join(__dirname, `../../admin/${file}`));
     });
   });
