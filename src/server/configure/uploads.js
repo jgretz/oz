@@ -2,7 +2,7 @@ import Uploads from '../uploads';
 
 export const UPLOADS = 'UPLOADS';
 export default (app, config) => {
-  if (!config) {
+  if (!config.uploads) {
     return;
   }
 
