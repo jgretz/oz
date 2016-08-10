@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
 
-import { Router, browserHistory } from 'react-router';
-import routes from './routes';
+import Router from './components/router';
+import { logError } from 'support';
 
 // styles
 import './styles/styles.scss';
@@ -16,8 +16,12 @@ import './styles/styles.scss';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
-render(
-  <Provider store={store}>
-    <Router history={browserHistory} routes={routes(store)} />
-  </Provider>, document.getElementById('app')
-);
+try {
+  render(
+    <Provider store={store}>
+      <Router store={store} />
+    </Provider>, document.getElementById('app')
+  );
+} catch (err) {
+  logError(err);
+}

@@ -2,12 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { Row, Col, Button } from 'react-bootstrap';
-import { browserHistory } from 'react-router';
 import autobind from 'class-autobind';
 
 import { loadObject, saveObject, deleteObject } from 'actions';
 import { renderField } from 'controls';
-import { filterById } from 'support';
+import { filterById, goto } from 'support';
 
 class DataDetail extends Component {
   constructor(props) {
@@ -54,13 +53,13 @@ class DataDetail extends Component {
   // click handlers
   save(form) {
     this.props.saveObject(this.state.model, form).then((response) => {
-      browserHistory.push(`/data/${this.state.model._id}/${response.data._id}`);
+      goto(`data/${this.state.model._id}/${response.data._id}`);
     });
   }
 
   delete() {
     this.props.deleteObject(this.state.model, this.props.params.id).then(() => {
-      browserHistory.push(`/data/${this.state.model._id}`);
+      goto(`data/${this.state.model._id}`);
     });
   }
 

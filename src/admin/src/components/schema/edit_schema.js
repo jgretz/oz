@@ -3,12 +3,11 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, FieldArray } from 'redux-form';
 import { Row, Col, Button, FormGroup } from 'react-bootstrap';
-import { browserHistory } from 'react-router';
 import autobind from 'class-autobind';
 
 import { TextInput, SelectInput, CheckboxInput } from 'controls';
 import { saveSchema, deleteSchema } from 'actions';
-import { filterById } from 'support';
+import { filterById, goto } from 'support';
 
 class EditSchema extends Component {
   constructor(props) {
@@ -51,13 +50,13 @@ class EditSchema extends Component {
 
   submit(form) {
     this.props.saveSchema(form).then((obj) => {
-      browserHistory.push(`/schema/${obj.data._id}`);
+      goto(`schema/${obj.data._id}`);
     });
   }
 
   delete() {
     this.props.deleteSchema(this.props.params.id).then(() => {
-      browserHistory.push('/schema');
+      goto('schema');
     });
   }
 

@@ -2,12 +2,11 @@ import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Button, Table } from 'react-bootstrap';
-import { browserHistory } from 'react-router';
 import humanizePlus from 'humanize-plus';
 import autobind from 'class-autobind';
 
 import { loadObjects } from 'actions';
-import { filterById } from 'support';
+import { filterById, goto } from 'support';
 
 class DataList extends Component {
   constructor(props) {
@@ -48,11 +47,11 @@ class DataList extends Component {
 
   // click handlers
   newObject() {
-    browserHistory.push(`/data/${this.props.params.id}/new`);
+    goto(`data/${this.props.params.id}/new`);
   }
 
   editObject(obj) {
-    browserHistory.push(`/data/${this.props.params.id}/${obj._id}`);
+    goto(`data/${this.props.params.id}/${obj._id}`);
   }
 
   // render

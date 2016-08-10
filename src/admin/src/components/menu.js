@@ -1,15 +1,16 @@
 import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+
+import { goto } from 'support';
 
 class Menu extends Component {
   onSelection(page, object) {
-    browserHistory.push(`/${page}/${object._id}`);
+    goto(`${page}/${object._id}`);
   }
 
   newSchema() {
-    browserHistory.push('/schema');
+    goto('schema');
   }
 
   buildNavigation(page, objects) {
