@@ -36,7 +36,7 @@ export default (app, router, config) => {
 
     // try to find the route in the db,
     // if found, register it so we dont hit here again
-    const url = req.url.replace(API_URL, '');
+    const url = req.url.replace(`${API_URL}/`, '');
     db.find(schema, { url }).then((result) => {
       if (result.length === 0) {
         next();

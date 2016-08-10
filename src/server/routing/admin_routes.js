@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import path from 'path';
 
+import { ADMIN_URL } from '../util/constants';
+
 export default (app, router, config) => {
   if (!config.admin) {
     return;
@@ -17,7 +19,7 @@ export default (app, router, config) => {
   };
 
   _.forOwn(map, (file, url) => {
-    app.get(`*/admin${url}`, (req, res) => {
+    router['get'](`*/${ADMIN_URL}${url}`, (req, res) => {
       res.status(200).sendFile(path.join(__dirname, `../../admin/${file}`));
     });
   });
