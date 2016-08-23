@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { FieldArray } from 'redux-form';
-import { Button } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import autobind from 'class-autobind';
 
 import { InputLabel } from '../input-label';
@@ -16,6 +16,10 @@ class ArrayWrapper extends Component {
     fields.push(null);
   }
 
+  deleteItem(fields, index) {
+    fields.remove(index);
+  }
+
   renderArray({ fields }) {
     const { field } = this.props;
     return (
@@ -29,20 +33,32 @@ class ArrayWrapper extends Component {
           <i className="fa fa-plus" />
         </Button>
         <br /><br />
-        {fields.map((f, i) => this.renderItem(f, i))}
+        {fields.map((f, i) => this.renderItem(fields, f, i))}
       </div>
     );
   }
 
-  renderItem(reduxField, index) {
+  renderItem(fields, reduxField, index) {
     const { field } = this.props;
 
     return (
-      <SchemaInput
-        key={index}
-        field={field}
-        reduxField={reduxField}
-      />
+      <Row key={index}>
+        <Col xs={10}>
+          <SchemaInput
+            field={field}
+            reduxField={reduxField}
+          />
+        </Col>
+        <Col xs={2}>
+          <Button
+            bsStyle="danger"
+            className="pull-right delete"
+            onClick={this.deleteItem.bind(this, fields, index)}
+          >
+            Delete
+          </Button>
+        </Col>
+      </Row>
     );
   }
 
