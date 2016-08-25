@@ -67,6 +67,10 @@ class EditSchema extends Component {
   }
 
   fieldSorted(event, moved, prevIndex, newIndex) {
+    if (prevIndex === newIndex) {
+      return;
+    }
+
     const { formFields } = moved;
     formFields.swap(prevIndex, newIndex);
   }
