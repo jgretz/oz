@@ -5,7 +5,7 @@ import { Row, Col, Button } from 'react-bootstrap';
 import autobind from 'class-autobind';
 
 import { loadObject, saveObject, deleteObject } from 'actions';
-import { renderField } from 'controls';
+import { formField } from 'controls/forms';
 import { filterById, goto } from 'support';
 
 class DataDetail extends Component {
@@ -72,7 +72,7 @@ class DataDetail extends Component {
     return (
       <div>
       {
-        this.state.model.fields.map(field => renderField(field))
+        this.state.model.fields.map(field => formField(field))
       }
       </div>
     );

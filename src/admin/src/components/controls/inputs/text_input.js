@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { FormGroup, FormControl } from 'react-bootstrap';
 import { Field } from 'redux-form';
 
-import { InputLabel } from './input-label';
+import { InputLabel } from './input_label';
 
 // inner control
 const renderControl = ({ input }) =>

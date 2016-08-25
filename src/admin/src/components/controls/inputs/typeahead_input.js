@@ -4,7 +4,7 @@ import { FormGroup } from 'react-bootstrap';
 import Typeahead from 'react-bootstrap-typeahead';
 import { Field } from 'redux-form';
 
-import { InputLabel } from './input-label';
+import { InputLabel } from './input_label';
 
 // inner control
 const renderControl = ({ input }) => {

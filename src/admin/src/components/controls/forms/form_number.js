@@ -1,7 +1,7 @@
 import React from 'react';
-import { NumberInput } from '../number_input';
+import { NumberInput } from '../inputs';
 
-export const renderNumber = (field) =>
+export const formNumber = (field) =>
   <NumberInput
     key={field.name}
     name={field.name}

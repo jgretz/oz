@@ -1,10 +1,10 @@
 import React from 'react';
-import { DateTimeInput } from '../datetime_input';
+import { DateTimeInput } from '../inputs';
 
-export const renderDate = (field) =>
+export const formTime = (field) =>
   <DateTimeInput
     key={field.name}
     name={field.name}
     label={field.name}
-    mode="date"
+    mode="time"
   />;

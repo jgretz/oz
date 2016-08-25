@@ -1,5 +1,5 @@
 import React from 'react';
-import { RichTextInput } from '../rich_text_input';
+import { RichTextInput } from '../inputs';
 
-export const renderRichText = (field) =>
+export const formRichText = (field) =>
   <RichTextInput key={field.name} name={field.name} label={field.name} />;

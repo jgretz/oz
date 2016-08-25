@@ -3,7 +3,7 @@ import { FormGroup } from 'react-bootstrap';
 import { Field } from 'redux-form';
 import DateTimeField from 'react-bootstrap-datetimepicker';
 
-import { InputLabel } from './input-label';
+import { InputLabel } from './input_label';
 
 // inner control
 const renderControl = ({ input }) =>

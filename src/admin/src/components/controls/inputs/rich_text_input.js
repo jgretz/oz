@@ -5,7 +5,7 @@ import RichTextEditor from 'react-rte';
 import { Field } from 'redux-form';
 import autobind from 'class-autobind';
 
-import { InputLabel } from './input-label';
+import { InputLabel } from './input_label';
 
 const FORMAT = 'html';
 

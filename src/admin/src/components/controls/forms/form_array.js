@@ -3,8 +3,7 @@ import { FieldArray } from 'redux-form';
 import { Row, Col, Button } from 'react-bootstrap';
 import autobind from 'class-autobind';
 
-import { InputLabel } from '../input-label';
-import { SchemaInput } from '../schema_input';
+import { InputLabel, SchemaInput } from '../inputs';
 
 class ArrayWrapper extends Component {
   constructor(props) {
@@ -74,5 +73,5 @@ ArrayWrapper.propTypes = {
   field: PropTypes.object.isRequired,
 };
 
-export const renderArray = (field) =>
+export const formArray = (field) =>
   <ArrayWrapper key={field.name} field={field} />;

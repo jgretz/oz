@@ -1,7 +1,7 @@
 import React from 'react';
-import { ImageInput } from '../image_input';
+import { ImageInput } from '../inputs';
 
-export const renderImage = (field) =>
+export const formImage = (field) =>
   <ImageInput
     key={field.name}
     name={field.name}

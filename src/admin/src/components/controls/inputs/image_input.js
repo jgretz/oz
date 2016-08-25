@@ -4,7 +4,7 @@ import { Field } from 'redux-form';
 import Dropzone from 'react-dropzone';
 
 import { rootUrl } from 'support';
-import { InputLabel } from './input-label';
+import { InputLabel } from './input_label';
 
 // inner control
 const renderControl = ({ input }) => {

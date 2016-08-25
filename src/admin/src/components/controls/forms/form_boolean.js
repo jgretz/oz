@@ -1,7 +1,7 @@
 import React from 'react';
-import { CheckboxInput } from '../checkbox_input';
+import { CheckboxInput } from '../inputs';
 
-export const renderBoolean = (field) =>
+export const formBoolean = (field) =>
   <CheckboxInput
     key={field.name}
     name={field.name}

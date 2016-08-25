@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput } from '../text_input';
+import { TextInput } from '../inputs';
 
-export const renderString = (field) =>
+export const formString = (field) =>
   <TextInput key={field.name} name={field.name} label={field.name} />;
