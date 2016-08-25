@@ -28,6 +28,7 @@ node_modules
 
 #dist folder
 dist
+src/styles/styles.min.css
 
 #Webstorm metadata
 .idea

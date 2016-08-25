@@ -9,7 +9,8 @@ export const saveObject = (model, object) => {
   const url = id ? `${model.url}/${id}` : model.url;
 
   return apiExecutor({
-    verb, url,
+    verb,
+    url,
 
     data: object,
 

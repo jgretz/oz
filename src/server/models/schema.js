@@ -10,7 +10,7 @@ export default {
       peer: 'string',
       required: 'bool',
       identity: 'bool',
-      showInList: 'bool',
+      showInList: 'bool'
     }],
   },
 };

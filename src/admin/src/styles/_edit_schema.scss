@@ -15,6 +15,11 @@
     }
   }
 
+  .dragged {
+    border: solid 1px $black;
+    background-color: $transparent-gray;
+  }
+
   .field-group-checkboxes {
     .form-group {
       margin-bottom: 0;
@@ -35,6 +40,16 @@
 
     .control-label {
       padding-left: 20px;
+    }
+  }
+
+  .sort {
+    text-align: center;
+
+    i {
+      margin-top: 27px;
+      font-size: 30px;
+      cursor: pointer;
     }
   }
 }

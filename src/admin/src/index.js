@@ -4,10 +4,12 @@ import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import reducers from './reducers/index';
 
-import Router from './components/router';
 import { logError } from 'support';
+
+import reducers from './reducers/index';
+import Router from './components/router';
+
 
 // styles
 import './styles/styles.scss';

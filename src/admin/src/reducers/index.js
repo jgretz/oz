@@ -9,7 +9,8 @@ import data from './data/data';
 const rootReducer = combineReducers({
   form: formReducer,
 
-  schema, schemaTypes,
+  schema,
+  schemaTypes,
 
   data,
 });

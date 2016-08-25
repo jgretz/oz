@@ -2,6 +2,8 @@ import _ from 'lodash';
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
+import { adminUrl } from 'support';
+
 import App from './app';
 
 import Home from './misc/home';
@@ -10,8 +12,6 @@ import NotFound from './misc/not_found';
 import EditSchema from './schema/edit_schema';
 import DataList from './data/list';
 import DataDetail from './data/detail';
-
-import { adminUrl } from 'support';
 
 // TODO: fix this hack
 let root = adminUrl('');

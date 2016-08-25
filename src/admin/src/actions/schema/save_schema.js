@@ -9,7 +9,8 @@ export const saveSchema = (model) => {
   const url = id ? `schema/${id}` : 'schema';
 
   return apiExecutor({
-    verb, url,
+    verb,
+    url,
 
     data: model,
 

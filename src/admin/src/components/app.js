@@ -2,8 +2,9 @@ import React, { PropTypes, Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import Menu from './menu';
 import { loadSchema, loadSchemaTypes } from 'actions';
+
+import Menu from './menu';
 
 class App extends Component {
   componentWillMount() {
