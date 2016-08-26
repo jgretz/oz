@@ -6,7 +6,7 @@ import { Row, Col, Button } from 'react-bootstrap';
 import autobind from 'class-autobind';
 import Reorder from 'react-reorder';
 
-import { TextInput } from 'controls/forms';
+import { TextInput } from 'controls/inputs';
 import { saveSchema, deleteSchema } from 'actions';
 import { filterById, goto } from 'support';
 

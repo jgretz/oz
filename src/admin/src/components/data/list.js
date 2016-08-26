@@ -7,6 +7,11 @@ import autobind from 'class-autobind';
 
 import { loadObjects } from 'actions';
 import { filterById, goto } from 'support';
+import {
+  renderString, renderRichText, renderPassword, renderNumber,
+  renderBoolean, renderDateTime, renderDate, renderTime,
+  renderImage, renderPeer, renderArray,
+} from 'controls/renderers';
 
 class DataList extends Component {
   constructor(props) {
@@ -114,7 +119,7 @@ class DataList extends Component {
               this.displayProps().map(field =>
               (
                 <td key={field.name}>
-                  {obj[field.name]}
+                  {this.renderData(field, obj)}
                 </td>
               ))
             }
@@ -126,6 +131,30 @@ class DataList extends Component {
       }
       </tbody>
     );
+  }
+
+  renderData(field, obj) {
+    const map = {
+      string: renderString,
+      password: renderPassword,
+      number: renderNumber,
+      richText: renderRichText,
+      datetime: renderDateTime,
+      date: renderDate,
+      time: renderTime,
+      bool: renderBoolean,
+      image: renderImage,
+      peer: renderPeer,
+      array: renderArray,
+    };
+
+    const render = map[field.field_type];
+    if (!render) {
+      console.log(field.field_type);
+      return null;
+    }
+
+    return render(obj[field.name], field);
   }
 
   render() {

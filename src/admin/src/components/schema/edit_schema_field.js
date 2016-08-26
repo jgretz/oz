@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Row, Col, Button, FormGroup } from 'react-bootstrap';
 import autobind from 'class-autobind';
 
-import { TextInput, SelectInput, CheckboxInput } from 'controls/forms';
+import { TextInput, SelectInput, CheckboxInput } from 'controls/inputs';
 
 // Field Render Component
 class EditSchemaField extends Component {
