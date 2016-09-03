@@ -6,7 +6,7 @@ import humanizePlus from 'humanize-plus';
 import autobind from 'class-autobind';
 
 import { loadObjects } from 'actions';
-import { filterById, goto } from 'support';
+import { filterById, goto, logError } from 'support';
 import {
   renderString, renderRichText, renderPassword, renderNumber,
   renderBoolean, renderDateTime, renderDate, renderTime,
@@ -150,7 +150,7 @@ class DataList extends Component {
 
     const render = map[field.field_type];
     if (!render) {
-      console.log(field.field_type);
+      logError(`Unable to render data for ${field.name} of type ${field.type}`);
       return null;
     }
 
