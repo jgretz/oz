@@ -6,12 +6,8 @@ import humanizePlus from 'humanize-plus';
 import autobind from 'class-autobind';
 
 import { loadObjects } from 'actions';
-import { filterById, goto, logError } from 'support';
-import {
-  renderString, renderRichText, renderPassword, renderNumber,
-  renderBoolean, renderDateTime, renderDate, renderTime,
-  renderImage, renderPeer, renderArray, renderList,
-} from 'controls/renderers';
+import { filterById, goto } from 'support';
+import ListRow from './list_row';
 
 class DataList extends Component {
   constructor(props) {
@@ -53,10 +49,6 @@ class DataList extends Component {
   // click handlers
   newObject() {
     goto(`data/${this.props.params.id}/new`);
-  }
-
-  editObject(obj) {
-    goto(`data/${this.props.params.id}/${obj._id}`);
   }
 
   // render
@@ -111,51 +103,17 @@ class DataList extends Component {
 
     return (
       <tbody>
-      {
-        data.map((obj) =>
-        (
-          <tr key={obj._id} className="row">
-            {
-              this.displayProps().map(field =>
-              (
-                <td key={field.name}>
-                  {this.renderData(field, obj)}
-                </td>
-              ))
-            }
-            <td className="edit" onClick={this.editObject.bind(this, obj)}>
-              Edit
-            </td>
-          </tr>
-        ))
-      }
+        {
+          data.map(obj =>
+            <ListRow
+              key={obj._id}
+              object={obj}
+              displayProps={this.displayProps()}
+              dataTypeId={this.props.params.id}
+            />)
+        }
       </tbody>
     );
-  }
-
-  renderData(field, obj) {
-    const map = {
-      string: renderString,
-      password: renderPassword,
-      number: renderNumber,
-      richText: renderRichText,
-      datetime: renderDateTime,
-      date: renderDate,
-      time: renderTime,
-      bool: renderBoolean,
-      image: renderImage,
-      peer: renderPeer,
-      array: renderArray,
-      list: renderList,
-    };
-
-    const render = map[field.field_type];
-    if (!render) {
-      logError(`Unable to render data for ${field.name} of type ${field.type}`);
-      return null;
-    }
-
-    return render(obj[field.name], field);
   }
 
   render() {
