@@ -7,3 +7,4 @@ export * from './render_datetime';
 export * from './render_image';
 export * from './render_peer';
 export * from './render_array';
+export * from './render_list';

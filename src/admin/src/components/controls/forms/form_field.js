@@ -11,6 +11,7 @@ import { formBoolean } from './form_boolean';
 import { formImage } from './form_image';
 import { formPeer } from './form_peer';
 import { formArray } from './form_array';
+import { formList } from './form_list';
 
 // map from type
 const map = {
@@ -25,6 +26,7 @@ const map = {
   image: formImage,
   peer: formPeer,
   array: formArray,
+  list: formList,
 };
 
 // bring it together

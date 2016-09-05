@@ -18,23 +18,40 @@ class EditSchemaField extends Component {
     formFields.remove(index);
   }
 
-  renderPeerSelection() {
-    const { item: { formFields, field, schemaId, index }, schema, fieldData } = this.props;
-
-    const needsPeerSelection = ['peer', 'array'];
+  renderSecondayInput() {
+    const { item: { formFields, index }, fieldData } = this.props;
     if (!formFields) {
       return null;
     }
 
     const data = fieldData[index];
-    if (!_.includes(needsPeerSelection, data.field_type)) {
-      return null;
+
+    const needsPeerSelection = ['peer', 'array'];
+    if (_.includes(needsPeerSelection, data.field_type)) {
+      return this.renderPeerSelection();
     }
+
+    const needsTextEntry = ['list'];
+    if (_.includes(needsTextEntry, data.field_type)) {
+      return this.renderList();
+    }
+
+    return null;
+  }
+
+  renderPeerSelection() {
+    const { item: { field, schemaId }, schema } = this.props;
 
     const objects = _.filter(schema, obj => obj._id !== schemaId);
     const values = _.map(objects, (schemaObj) => ({ key: schemaObj._id, value: schemaObj.name }));
 
     return <SelectInput name={`${field}.peer`} label="Relation" array={values} />;
+  }
+
+  renderList() {
+    const { item: { field } } = this.props;
+
+    return <TextInput name={`${field}.list`} label="List (comma-seperated)" />;
   }
 
   render() {
@@ -72,7 +89,7 @@ class EditSchemaField extends Component {
             <CheckboxInput name={`${field}.showInList`} label="Show In List" />
           </Col>
           <Col xs={3}>
-            {this.renderPeerSelection()}
+            {this.renderSecondayInput()}
           </Col>
         </Row>
       </FormGroup>

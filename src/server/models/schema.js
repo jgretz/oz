@@ -8,6 +8,7 @@ export default {
       name: 'string',
       field_type: 'string',
       peer: 'string',
+      list: 'string',
       required: 'bool',
       identity: 'bool',
       showInList: 'bool'

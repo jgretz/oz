@@ -10,7 +10,7 @@ import { filterById, goto, logError } from 'support';
 import {
   renderString, renderRichText, renderPassword, renderNumber,
   renderBoolean, renderDateTime, renderDate, renderTime,
-  renderImage, renderPeer, renderArray,
+  renderImage, renderPeer, renderArray, renderList,
 } from 'controls/renderers';
 
 class DataList extends Component {
@@ -146,6 +146,7 @@ class DataList extends Component {
       image: renderImage,
       peer: renderPeer,
       array: renderArray,
+      list: renderList,
     };
 
     const render = map[field.field_type];
