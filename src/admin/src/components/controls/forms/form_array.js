@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { FieldArray } from 'redux-form';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import autobind from 'class-autobind';
+import Reorder from 'react-reorder';
 
-import { goto } from 'support';
-import { InputLabel, SchemaInput } from '../inputs';
+import { InputLabel } from '../inputs';
+import FormArrayItem from './form_array_item';
 
 class ArrayWrapper extends Component {
   constructor(props) {
@@ -16,17 +17,19 @@ class ArrayWrapper extends Component {
     fields.push(null);
   }
 
-  newItem() {
-    const { field } = this.props;
-    goto(`data/${field.peer}/new`);
-  }
+  itemsSorted(event, moved, prevIndex, newIndex) {
+    if (prevIndex === newIndex) {
+      return;
+    }
 
-  deleteItem(fields, index) {
-    fields.remove(index);
+    const { fields } = moved;
+    fields.swap(prevIndex, newIndex);
   }
 
   renderArray({ fields }) {
     const { field } = this.props;
+    const list = fields.map((reduxField, index) => ({ fields, field, reduxField, index }));
+
     return (
       <div>
         <InputLabel text={field.name} />
@@ -38,39 +41,15 @@ class ArrayWrapper extends Component {
           <i className="fa fa-plus" />
         </Button>
         <br className="btn-break" />
-        {fields.map((f, i) => this.renderItem(fields, f, i))}
+        <Reorder
+          itemKey="index"
+          lock="horizontal"
+          holdTime="100"
+          list={list}
+          template={FormArrayItem}
+          callback={this.itemsSorted}
+        />
       </div>
-    );
-  }
-
-  renderItem(fields, reduxField, index) {
-    const { field } = this.props;
-
-    return (
-      <Row key={index}>
-        <Col xs={10}>
-          <SchemaInput
-            field={field}
-            reduxField={reduxField}
-          />
-        </Col>
-        <Col xs={2}>
-          <Button
-            bsStyle="primary"
-            className="pull-right new-array"
-            onClick={this.newItem}
-          >
-            New
-          </Button>
-          <Button
-            bsStyle="danger"
-            className="pull-right delete"
-            onClick={this.deleteItem.bind(this, fields, index)}
-          >
-            Delete
-          </Button>
-        </Col>
-      </Row>
     );
   }
 
