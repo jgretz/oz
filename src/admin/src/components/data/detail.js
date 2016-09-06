@@ -37,17 +37,20 @@ class DataDetail extends Component {
       return;
     }
 
-    this.setState({ model });
+    if (this.isNew(id)) {
+      this.setState({ model, object: {} });
+      this.props.initialize({});
+    } else {
+      this.setState({ ...this.state, model });
 
-    if (!this.isNew()) {
       this.props.loadObject(model, id).then((response) => {
         this.props.initialize(response.data);
       });
     }
   }
 
-  isNew() {
-    return this.props.params.id === 'new';
+  isNew(id) {
+    return id === 'new';
   }
 
   // click handlers
@@ -84,7 +87,7 @@ class DataDetail extends Component {
     }
 
     const deleteButton = () => {
-      if (!this.isNew()) {
+      if (!this.isNew(this.props.params.id)) {
         return (
           <Button bsStyle="danger" className="pull-right delete" onClick={this.delete.bind(this)}>
             Delete

@@ -3,6 +3,7 @@ import { FieldArray } from 'redux-form';
 import { Row, Col, Button } from 'react-bootstrap';
 import autobind from 'class-autobind';
 
+import { goto } from 'support';
 import { InputLabel, SchemaInput } from '../inputs';
 
 class ArrayWrapper extends Component {
@@ -13,6 +14,11 @@ class ArrayWrapper extends Component {
 
   addItem(fields) {
     fields.push(null);
+  }
+
+  newItem() {
+    const { field } = this.props;
+    goto(`data/${field.peer}/new`);
   }
 
   deleteItem(fields, index) {
@@ -31,7 +37,7 @@ class ArrayWrapper extends Component {
         >
           <i className="fa fa-plus" />
         </Button>
-        <br /><br />
+        <br className="btn-break" />
         {fields.map((f, i) => this.renderItem(fields, f, i))}
       </div>
     );
@@ -49,6 +55,13 @@ class ArrayWrapper extends Component {
           />
         </Col>
         <Col xs={2}>
+          <Button
+            bsStyle="primary"
+            className="pull-right new-array"
+            onClick={this.newItem}
+          >
+            New
+          </Button>
           <Button
             bsStyle="danger"
             className="pull-right delete"
