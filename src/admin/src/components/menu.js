@@ -24,12 +24,14 @@ class Menu extends Component {
 
   render() {
     const sorted = _.sortBy(this.props.schema, 'name');
+    const data = _.filter(sorted, s => !s.hideInData);
+
     return (
       <div className="menu">
         <div>
           <h2>Data</h2>
           <ul>
-            {this.buildNavigation('data', sorted)}
+            {this.buildNavigation('data', data)}
           </ul>
         </div>
         <div>

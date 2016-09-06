@@ -4,6 +4,7 @@ export default {
     name: 'string',
     url: 'string',
     icon: 'string',
+    hideInData: 'bool',
     fields: [{
       name: 'string',
       field_type: 'string',

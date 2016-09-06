@@ -6,7 +6,7 @@ import { Row, Col, Button } from 'react-bootstrap';
 import autobind from 'class-autobind';
 import Reorder from 'react-reorder';
 
-import { TextInput } from 'controls/inputs';
+import { TextInput, CheckboxInput } from 'controls/inputs';
 import { saveSchema, deleteSchema } from 'actions';
 import { filterById, goto } from 'support';
 
@@ -138,6 +138,7 @@ class EditSchema extends Component {
               <TextInput name="name" label="Name" />
               <TextInput name="url" label="Url" />
               <TextInput name="icon" label="Icon" />
+              <CheckboxInput name="hideInData" label="Hide In Data" />
               <br /><br />
               <FieldArray name="fields" component={this.renderFields} />
             </form>
