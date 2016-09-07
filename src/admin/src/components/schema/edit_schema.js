@@ -5,6 +5,7 @@ import { reduxForm, FieldArray } from 'redux-form';
 import { Row, Col, Button } from 'react-bootstrap';
 import autobind from 'class-autobind';
 import Reorder from 'react-reorder';
+import Notifications, { notify } from 'react-notify-toast';
 
 import { TextInput, CheckboxInput } from 'controls/inputs';
 import { saveSchema, deleteSchema } from 'actions';
@@ -57,6 +58,8 @@ class EditSchema extends Component {
   submit(form) {
     this.props.saveSchema(form).then((obj) => {
       goto(`schema/${obj.data._id}`);
+
+      notify.show('Saved!', 'success', 2000);
     });
   }
 
@@ -126,6 +129,7 @@ class EditSchema extends Component {
 
     return (
       <div className="edit-schema">
+        <Notifications />
         <Row>
           <Col xs={12}>
             <form onSubmit={handleSubmit(this.submit)}>

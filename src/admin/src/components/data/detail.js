@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { Row, Col, Button } from 'react-bootstrap';
 import autobind from 'class-autobind';
+import Notifications, { notify } from 'react-notify-toast';
 
 import { loadObject, saveObject, deleteObject } from 'actions';
 import { formField } from 'controls/forms';
@@ -57,6 +58,8 @@ class DataDetail extends Component {
   save(form) {
     this.props.saveObject(this.state.model, form).then((response) => {
       goto(`data/${this.state.model._id}/${response.data._id}`);
+
+      notify.show('Saved!', 'success', 2000);
     });
   }
 
@@ -118,6 +121,7 @@ class DataDetail extends Component {
 
     return (
       <div className="data-detail">
+        <Notifications />
         <form onSubmit={handleSubmit(this.save)}>
           <Row>
             <Col xs={12}>

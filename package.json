@@ -28,15 +28,15 @@
     "colors": "^1.1.2",
     "cors": "^2.7.1",
     "express": "^4.14.0",
-    "glob": "^7.0.3",
+    "glob": "^7.0.6",
     "lodash": "^4.13.1",
     "moment": "^2.14.1",
-    "mongoose": "^4.5.7",
+    "mongoose": "^4.6.0",
     "mongoose-relationship": "^0.1.5",
     "multer": "^1.2.0",
     "object-assign": "^4.0.1",
     "promise": "^7.1.1",
-    "shelljs": "^0.7.0"
+    "shelljs": "^0.7.4"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
