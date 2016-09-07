@@ -43,7 +43,10 @@ class EditSchemaField extends Component {
     const { item: { field, schemaId }, schema } = this.props;
 
     const objects = _.filter(schema, obj => obj._id !== schemaId);
-    const values = _.map(objects, (schemaObj) => ({ key: schemaObj._id, value: schemaObj.name }));
+    const values = [
+      { key: null, value: '' },
+      ..._.map(objects, (schemaObj) => ({ key: schemaObj._id, value: schemaObj.name })),
+    ];
 
     return <SelectInput name={`${field}.peer`} label="Relation" array={values} />;
   }
