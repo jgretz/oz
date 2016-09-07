@@ -138,6 +138,7 @@ class EditSchema extends Component {
               <TextInput name="name" label="Name" />
               <TextInput name="url" label="Url" />
               <TextInput name="icon" label="Icon" />
+              <CheckboxInput name="trackChangeDates" label="Track Change Dates" />
               <CheckboxInput name="hideInData" label="Hide In Data" />
               <br /><br />
               <FieldArray name="fields" component={this.renderFields} />

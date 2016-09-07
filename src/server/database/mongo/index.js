@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import mongoose from 'mongoose';
 import promise from 'promise';
+import moment from 'moment';
+
 import { typeMap } from '../../util/data_types';
 
 const schemaIndex = {};
@@ -63,10 +65,19 @@ export default class Mongo {
   }
 
   create(model, data) {
+    if (model.schema.paths.create_date) {
+      data.create_date = moment();
+      data.update_date = moment();
+    }
+
     return model.create(data);
   }
 
   update(model, id, data) {
+    if (model.schema.paths.update_date) {
+      data.update_date = moment();
+    }
+
     return model.findByIdAndUpdate(id, data, { new: true });
   }
 

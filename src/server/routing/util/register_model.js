@@ -13,6 +13,11 @@ const buildDynamicDef = (obj) => {
     def.definition[field.name] = field.field_type;
   });
 
+  if (obj.trackChangeDates) {
+    def.definition.create_date = 'datetime';
+    def.definition.update_date = 'datetime';
+  }
+
   return def;
 };
 
