@@ -1,25 +1,19 @@
-import _ from 'lodash';
 import glob from 'glob';
+import join from 'join-path-js';
 
 const isClass = (t) => {
   return typeof t === 'function'
     && (/^\s*class\s+/.test(t.toString()) || /_class\S+/i.test(t.toString()));
 };
 
-export default (paths) => {
-  const rawFiles = paths.map(path => glob.sync(`${path}/**/*.js`));
-  const files = _.uniq(_.flatten(rawFiles));
+export default (path) => {
+  const files = glob.sync(join(path, '**/*.js'));
 
   return files.map((file) => {
-    let relativePath = file;
-    _.forEach(paths, path => relativePath = relativePath.replace(path, ''));
-
-    // the escape is a bit weird but it needs to get out of node_modules
-    const requirePath = file.startsWith(__dirname) ? file : `../../../../../${file}`;
+    var instance = require(file);
 
     // handle different ways this may come back depending on if its
     // and ES5 function, ES6 object or ES6 class
-    var instance = require(requirePath);
     if (instance.default) {
       instance = instance.default;
     }
@@ -30,7 +24,7 @@ export default (paths) => {
 
     return {
       absolutePath: file,
-      relativePath: relativePath,
+      relativePath: file.replace(path, ''),
 
       instance: instance
     };

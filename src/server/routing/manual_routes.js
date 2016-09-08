@@ -1,9 +1,12 @@
 import _ from 'lodash';
+import join from 'join-path-js';
+
 import loadFiles from '../util/load_files';
 import defineRoute from './util/define_route';
 
 export default (app, router, config) => {
-  const routes = loadFiles([`${config.src}/routes`]);
+  const searchPath = join(config.src, '/routes');
+  const routes = loadFiles(searchPath);
 
   _.forEach(routes, (routeInfo) => {
     // set path name for the route

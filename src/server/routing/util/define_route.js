@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import join from 'join-path-js';
 
 const verbs = ['get','post','put','delete'];
 const needsIdRoute = ['get','put','delete'];
@@ -35,7 +36,7 @@ export default (router, route, url, upload) => {
 
     // handle get /{id}
     if (_.includes(needsIdRoute, verb)) {
-      router[verb](`${url}/:id`, handler);
+      router[verb](join(url, ':id'), handler);
     }
   });
 };

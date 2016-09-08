@@ -4,7 +4,6 @@ import configure from './server/configure';
 import applyRoutes from './server/routing';
 
 const defaultConfig = {
-  src: './src',
   port: 3000,
   admin: true
 };
@@ -23,7 +22,7 @@ export default (options) => {
 
 // all props
 // {
-//   src: './src',
+//   src: __dirname,
 //   port: 3000,
 //   admin: true,
 //   spa: {

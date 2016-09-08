@@ -1,4 +1,5 @@
-import path from 'path';
+import fs from 'fs';
+import join from 'join-path-js';
 
 const getFileName = (file) => {
   return file.originalname;
@@ -13,6 +14,10 @@ export default class FileUploads {
   configure(app, multer) {
     var storage = multer.diskStorage({
       destination: (req, file, cb) => {
+        if (!fs.existsSync(this.path)) {
+          fs.mkdirSync(this.path);
+        }
+
         cb(null, this.path);
       },
 
@@ -23,18 +28,18 @@ export default class FileUploads {
 
     this.upload = multer({ storage: storage });
 
-    app.get(`*${this.route}/:filename`, (req, res) => {
-      const file = path.join(this.path, req.params.filename);
+    app.get(join('*', join(this.route, '/:filename')), (req, res) => {
+      const file = join(this.path, req.params.filename);
       res.status(200).sendFile(file);
     });
   }
 
   addRoute(router, verb, url, handler) {
     router[verb](url, this.upload.any(), handler);
-    router[verb](`${url}/:id`, this.upload.any(), handler);
+    router[verb](join(url, '/:id'), this.upload.any(), handler);
   }
 
   pointerToFile(file) {
-    return `${this.route}/${getFileName(file)}`;
+    return join(this.route, getFileName(file));
   }
 }

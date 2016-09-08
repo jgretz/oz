@@ -1,6 +1,9 @@
 import _ from 'lodash';
+import join from 'join-path-js';
+
 import defineRoute from './define_route';
 import DynamicRoute from '../../api/dynamic_route';
+
 import { API_URL } from '../../util/constants';
 
 const buildDynamicDef = (obj) => {
@@ -24,5 +27,5 @@ const buildDynamicDef = (obj) => {
 export default (router, db, upload, model) => {
   const modelDef = buildDynamicDef(model);
 
-  defineRoute(router, new DynamicRoute(modelDef, db), `${API_URL}/${model.url}`, upload);
+  defineRoute(router, new DynamicRoute(modelDef, db), join(API_URL, model.url), upload);
 };

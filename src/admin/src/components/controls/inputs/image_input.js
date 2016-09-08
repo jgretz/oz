@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { FormGroup } from 'react-bootstrap';
 import { Field } from 'redux-form';
 import Dropzone from 'react-dropzone';
+import { rootUrl } from 'support';
 
 import { InputLabel } from './input_label';
 
@@ -29,7 +30,7 @@ const renderControl = ({ input }) => {
     if (input.value instanceof File) {
       src = input.value.preview;
     } else {
-      src = input.value;
+      src = rootUrl(input.value);
     }
 
     return (
