@@ -30,7 +30,7 @@ export default class FileUploads {
     this.upload = multer({ storage: storage });
 
     app.get(urljoin('*', this.route, '/:filename'), (req, res) => {
-      const file = join(this.path, req.params.filename);
+      const file = path.join(this.path, req.params.filename);
       res.status(200).sendFile(file);
     });
   }
