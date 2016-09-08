@@ -1,13 +1,13 @@
 import glob from 'glob';
-import join from 'join-path-js';
+import path from 'path';
 
 const isClass = (t) => {
   return typeof t === 'function'
     && (/^\s*class\s+/.test(t.toString()) || /_class\S+/i.test(t.toString()));
 };
 
-export default (path) => {
-  const files = glob.sync(join(path, '**/*.js'));
+export default (searchPath) => {
+  const files = glob.sync(path.join(searchPath, '**/*.js'));
 
   return files.map((file) => {
     var instance = require(file);
@@ -24,7 +24,7 @@ export default (path) => {
 
     return {
       absolutePath: file,
-      relativePath: file.replace(path, ''),
+      relativePath: file.replace(searchPath, ''),
 
       instance: instance
     };

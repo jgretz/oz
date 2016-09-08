@@ -1,5 +1,6 @@
 import fs from 'fs';
-import join from 'join-path-js';
+import urljoin from 'url-join';
+import path from 'path';
 
 const getFileName = (file) => {
   return file.originalname;
@@ -28,7 +29,7 @@ export default class FileUploads {
 
     this.upload = multer({ storage: storage });
 
-    app.get(join('*', join(this.route, '/:filename')), (req, res) => {
+    app.get(urljoin('*', this.route, '/:filename'), (req, res) => {
       const file = join(this.path, req.params.filename);
       res.status(200).sendFile(file);
     });
@@ -36,10 +37,10 @@ export default class FileUploads {
 
   addRoute(router, verb, url, handler) {
     router[verb](url, this.upload.any(), handler);
-    router[verb](join(url, '/:id'), this.upload.any(), handler);
+    router[verb](urljoin(url, '/:id'), this.upload.any(), handler);
   }
 
   pointerToFile(file) {
-    return join(this.route, getFileName(file));
+    return path.join(this.route, getFileName(file));
   }
 }

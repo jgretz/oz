@@ -1,4 +1,4 @@
-import join from 'join-path-js';
+import path from 'path';
 import routeExists from '../util/route_exists';
 
 export default (app, router, config) => {
@@ -13,6 +13,6 @@ export default (app, router, config) => {
       return;
     }
 
-    res.status(200).sendFile(join(config.spa.path, config.spa.index));
+    res.status(200).sendFile(path.join(config.spa.path, config.spa.index));
   });
 };

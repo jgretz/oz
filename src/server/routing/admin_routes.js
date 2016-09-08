@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import join from 'join-path-js';
+import urljoin from 'url-join';
+import path from 'path';
 
 import { ADMIN_URL } from '../util/constants';
 
@@ -19,8 +20,8 @@ export default (app, router, config) => {
   };
 
   _.forOwn(map, (file, url) => {
-    router['get'](join('*', join(ADMIN_URL, url)), (req, res) => {
-      res.status(200).sendFile(join(__dirname, `../../admin/${file}`));
+    router['get'](urljoin('*', ADMIN_URL, url), (req, res) => {
+      res.status(200).sendFile(path.join(__dirname, `../../admin/${file}`));
     });
   });
 };
