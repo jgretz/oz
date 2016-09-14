@@ -27,7 +27,6 @@ export default (options) => {
 //   admin: true,
 //   spa: {
 //     path: '/release',
-//     index: 'index.html'
 //   },
 //   db: {
 //     type: 'mongo',

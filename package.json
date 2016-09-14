@@ -1,6 +1,6 @@
 {
   "name": "zen-express",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "a platform to quickly spin up a configurable api",
   "main": "lib/index.js",
   "scripts": {
