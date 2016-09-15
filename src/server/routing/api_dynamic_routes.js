@@ -25,7 +25,7 @@ export default (app, router, config) => {
   // add handler to catch routes that are defined during launch
   app.use((req, res, next) => {
     // if the route exists, just let it go there
-    if (routeExists(router, req)) {
+    if (routeExists(router, req).length > 0) {
       next();
       return;
     }
