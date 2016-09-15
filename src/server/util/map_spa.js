@@ -31,7 +31,7 @@ const matchesNonSpaRoute = (rootUrl, router, req) => {
   const matchedRoutes = routeExists(router, req);
   const noWildcards = _.filter(matchedRoutes, ({ route }) => {
     const term = route.path.replace(rootUrl, '');
-    return !wildcards.includes(term);
+    return _.every(wildcards, w => w !== term);
   });
 
   return noWildcards.length > 0;
