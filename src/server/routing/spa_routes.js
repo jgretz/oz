@@ -1,4 +1,4 @@
-import mapSpa from '../util/map_spa';
+import { mapSpa } from '../util';
 
 export default (app, router, config) => {
   if (!config.spa) {

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import urljoin from 'url-join';
 import path from 'path';
-import routeExists from './route_exists';
+import { routeExists } from './route_exists';
 
 // maps and filters
 const map = {
@@ -38,7 +38,7 @@ const matchesNonSpaRoute = (rootUrl, router, req) => {
 };
 
 // export
-export default (rootUrl, filePrefix, router) => {
+export const mapSpa = (rootUrl, filePrefix, router) => {
   _.forOwn(map, (file, url) => {
     const routeUrl = urljoin('*', rootUrl, url);
     router['get'](routeUrl, (req, res, next) => {

@@ -6,7 +6,7 @@ const isClass = (t) => {
     && (/^\s*class\s+/.test(t.toString()) || /_class\S+/i.test(t.toString()));
 };
 
-export default (searchPath) => {
+export const loadFiles = (searchPath) => {
   const files = glob.sync(path.join(searchPath, '**/*.js'));
 
   return files.map((file) => {

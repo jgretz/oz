@@ -1,7 +1,6 @@
 import path from 'path';
 
-import mapSpa from '../util/map_spa';
-import { ADMIN_URL } from '../util/constants';
+import { ADMIN_URL, mapSpa } from '../util';
 
 export default (app, router, config) => {
   if (!config.admin) {

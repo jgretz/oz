@@ -1,11 +1,20 @@
 import _ from 'lodash';
-import registerModel from './util/register_model';
+import urljoin from 'url-join';
+
 import Schema from '../models/schema';
+import DynamicRoute from '../api/dynamic_route';
 import { DATABASE } from '../configure/database';
 import { UPLOADS } from '../configure/uploads';
-import { API_URL } from '../util/constants';
-import routeExists from '../util/route_exists';
+import { API_URL, routeExists, schemaObjFromDef, defineRoute } from '../util';
 
+// local methods
+const registerModel = (router, db, upload, model) => {
+  const modelDef = schemaObjFromDef(model);
+
+  defineRoute(router, new DynamicRoute(modelDef, db), urljoin(API_URL, model.url), upload);
+};
+
+// export
 export default (app, router, config) => {
   if (!config.admin || !config.db) {
     return;

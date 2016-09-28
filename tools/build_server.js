@@ -1,7 +1,11 @@
 require('shelljs/global');
 
+
+echo('Building Server ...');
+
 // clean
-rm('-rf', 'lib/');
+rm('-rf', 'lib/server');
+rm('lib/index.js');
 
 // move over the server
 exec('babel -d lib/ src/index.js');
@@ -10,10 +14,4 @@ rm('-rf', 'lib/src/');
 
 exec('babel -d lib/server src/server');
 
-// move over the admin site
-cd('./src/admin');
-exec('npm run build');
-mv('lib/', '../../lib/admin');
-
-// done
-echo('build complete');
+echo('Server Build Complete');

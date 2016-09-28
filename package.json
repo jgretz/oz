@@ -5,7 +5,9 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "nodemon src/test.js --exec babel-node",
-    "compile": "node tools/build.js",
+    "compile:server": "node tools/build_server.js",
+    "compile:admin": "node tools/build_admin.js",
+    "compile": "npm run compile:server && npm run compile:admin",
     "prepublish": "npm run compile"
   },
   "repository": {

@@ -1,5 +1,5 @@
 import _ from 'lodash';
 
-export default (router, req) => {
+export const routeExists = (router, req) => {
   return _.filter(router.stack, r => req.url.match(r.regexp));
 };

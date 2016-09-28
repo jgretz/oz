@@ -6,7 +6,7 @@ import bodyParser from './bodyparser';
 import database from './database';
 import uploads from './uploads';
 
-import loadFiles from '../util/load_files';
+import { loadFiles } from '../util';
 
 export default (app, config) => {
   const searchPath = path.join(config.src, '/config');

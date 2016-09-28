@@ -5,7 +5,7 @@ const verbs = ['get','post','put','delete'];
 const needsIdRoute = ['get','put','delete'];
 const allowsFileUpload = ['post'];
 
-export default (router, route, url, upload) => {
+export const defineRoute = (router, route, url, upload) => {
   const before = route['before'];
   const after = route['after'];
 

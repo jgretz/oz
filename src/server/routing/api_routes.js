@@ -1,7 +1,7 @@
-import defineRoute from './util/define_route';
 import SchemaRoute from '../api/schema_route';
 import SchemaTypesRoute from '../api/schema_types_route';
 import { DATABASE } from '../configure/database';
+import { defineRoute } from '../util';
 
 export default (app, router, config) => {
   if (!config.admin || !config.db) {
