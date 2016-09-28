@@ -1,9 +1,5 @@
 import express from 'express';
-import manualRoutes from './manual_routes';
-import adminRoutes from './admin_routes';
-import spaRoutes from './spa_routes';
-import apiRoutes from './api_routes';
-import apiDynamicRoutes from './api_dynamic_routes';
+import { manualRoutes, adminRoutes, spaRoutes, apiRoutes, apiDynamicRoutes } from './config';
 
 export default (app, config) => {
   var router = express.Router();

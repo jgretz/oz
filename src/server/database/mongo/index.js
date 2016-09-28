@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import promise from 'promise';
 import moment from 'moment';
 
-import { typeMap } from '../../util';
+import { typeMap } from 'util';
 
 const schemaIndex = {};
 

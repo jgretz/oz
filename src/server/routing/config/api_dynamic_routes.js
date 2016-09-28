@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import urljoin from 'url-join';
 
-import Schema from '../models/schema';
-import DynamicRoute from '../api/dynamic_route';
-import { DATABASE } from '../configure/database';
-import { UPLOADS } from '../configure/uploads';
-import { API_URL, routeExists, schemaObjFromDef, defineRoute } from '../util';
+import DynamicRoute from '../routes/dynamic_route';
+import Schema from 'models/schema';
+import { DATABASE } from 'configure/database';
+import { UPLOADS } from 'configure/uploads';
+import { API_URL, routeExists, schemaObjFromDef, defineRoute } from 'util';
 
 // local methods
 const registerModel = (router, db, upload, model) => {
@@ -15,7 +15,7 @@ const registerModel = (router, db, upload, model) => {
 };
 
 // export
-export default (app, router, config) => {
+export const apiDynamicRoutes = (app, router, config) => {
   if (!config.admin || !config.db) {
     return;
   }

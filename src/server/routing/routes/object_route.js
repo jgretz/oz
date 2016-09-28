@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
-import { UPLOADS } from '../configure/uploads';
-import { logError } from '../util';
+import { UPLOADS } from 'configure/uploads';
+import { logError } from 'util';
 
 
 // util

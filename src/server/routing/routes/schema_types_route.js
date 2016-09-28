@@ -1,4 +1,4 @@
-import { types } from '../util';
+import { types } from 'util';
 
 export default class SchemaTypesRoute {
   get(req, res) {

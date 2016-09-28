@@ -1,8 +1,7 @@
 import path from 'path';
+import { ADMIN_URL, mapSpa } from 'util';
 
-import { ADMIN_URL, mapSpa } from '../util';
-
-export default (app, router, config) => {
+export const adminRoutes = (app, router, config) => {
   if (!config.admin) {
     return;
   }

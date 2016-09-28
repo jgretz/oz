@@ -1,4 +1,4 @@
-import Uploads from '../uploads';
+import Uploads from 'uploads';
 
 export const UPLOADS = 'UPLOADS';
 export default (app, config) => {

@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import path from 'path';
 
-import { defineRoute, loadFiles } from '../util';
+import { defineRoute, loadFiles } from 'util';
 
-export default (app, router, config) => {
+export const manualRoutes = (app, router, config) => {
   const searchPath = path.join(config.src, '/routes');
   const routes = loadFiles(searchPath);
 

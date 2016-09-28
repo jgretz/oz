@@ -1,5 +1,6 @@
 import ObjectRoute from './object_route';
-import Schema from '../models/schema';
+import Schema from 'models/schema';
+import { schemaObjFromDef } from 'util';
 
 export default class SchemaRoute extends ObjectRoute {
   constructor(db) {

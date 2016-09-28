@@ -1,4 +1,4 @@
-import Database from '../database';
+import Database from 'database';
 
 export const DATABASE = 'DATABASE';
 export default (app, config) => {
