@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const schemaObjFromDef = (obj) => {
   const def = {
     name: obj.name,
