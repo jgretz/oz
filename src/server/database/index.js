@@ -36,4 +36,12 @@ export default class Database {
   delete(model, id) {
     return this.db.delete(model, id);
   }
+
+  updateDefinition(definition) {
+    return this.db.updateDefinition(definition);
+  }
+
+  deleteDefinition(definition) {
+    this.db.deleteDefinition(definition);
+  }
 }

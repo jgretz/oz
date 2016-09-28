@@ -5,8 +5,6 @@ import moment from 'moment';
 
 import { typeMap } from 'util';
 
-const schemaIndex = {};
-
 const objectFromModel = (model) => {
   const object = {};
   _.forOwn(model, (value, key) =>  {
@@ -45,15 +43,12 @@ export default class Mongo {
   }
 
   buildFromModel(modelDef) {
-    let model = schemaIndex[modelDef.name];
+    let model = mongoose.connection.models[modelDef.name];
     if (model) {
       return model;
     }
 
-    model = mongoose.model(modelDef.name, objectFromModel(modelDef.definition));
-    schemaIndex[modelDef.name] = model;
-
-    return model;
+    return mongoose.model(modelDef.name, objectFromModel(modelDef.definition));
   }
 
   findById(model, id) {
@@ -83,5 +78,14 @@ export default class Mongo {
 
   delete(model, id) {
     return model.findByIdAndRemove(id);
+  }
+
+  updateDefinition(definition) {
+    this.deleteDefinition(definition);
+    return this.buildFromModel(definition);
+  }
+
+  deleteDefinition(definition) {
+    delete mongoose.connection.models[definition.name];
   }
 }

@@ -8,10 +8,10 @@ import { UPLOADS } from 'configure/uploads';
 import { API_URL, routeExists, schemaObjFromDef, defineRoute } from 'util';
 
 // local methods
-const registerModel = (router, db, upload, model) => {
+const registerModel = (app, router, db, upload, model) => {
   const modelDef = schemaObjFromDef(model);
 
-  defineRoute(router, new DynamicRoute(modelDef, db), urljoin(API_URL, model.url), upload);
+  defineRoute(app, router, new DynamicRoute(modelDef, db), urljoin(API_URL, model.url), upload);
 };
 
 // export
@@ -27,7 +27,7 @@ export const apiDynamicRoutes = (app, router, config) => {
   // register routes that are defined at launch
   db.find(schema).then((objects) => {
     _.forEach(objects, (obj) => {
-      registerModel(router, db, upload, obj);
+      registerModel(app, router, db, upload, obj);
     });
   });
 
@@ -48,7 +48,7 @@ export const apiDynamicRoutes = (app, router, config) => {
         return;
       }
 
-      registerModel(router, db, upload, result[0]);
+      registerModel(app, router, db, upload, result[0]);
       next();
     });
   });

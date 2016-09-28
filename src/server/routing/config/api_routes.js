@@ -8,6 +8,6 @@ export const apiRoutes = (app, router, config) => {
     return;
   }
 
-  defineRoute(router, new SchemaRoute(app.get(DATABASE)), '/api/schema');
-  defineRoute(router, new SchemaTypesRoute(), '/api/schematypes');
+  defineRoute(app, router, new SchemaRoute(app.get(DATABASE)), '/api/schema');
+  defineRoute(app, router, new SchemaTypesRoute(), '/api/schematypes');
 };

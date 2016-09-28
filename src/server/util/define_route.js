@@ -5,10 +5,23 @@ const verbs = ['get','post','put','delete'];
 const needsIdRoute = ['get','put','delete'];
 const allowsFileUpload = ['post'];
 
-export const defineRoute = (router, route, url, upload) => {
+export const ROUTES = 'ROUTES';
+
+export const defineRoute = (app, router, route, url, upload) => {
+  // store on the global state so we can access elsewhere
+  let routes = app.get(ROUTES); {
+    if (!routes) {
+      routes = {};
+      app.set(ROUTES, routes);
+    }
+  }
+  routes[url] = route;
+
+  // capture before / after hooks
   const before = route['before'];
   const after = route['after'];
 
+  // add verbs
   _.forEach(verbs, (verb) => {
     if (!route[verb]) {
       return;

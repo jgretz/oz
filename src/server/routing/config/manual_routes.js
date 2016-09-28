@@ -15,6 +15,6 @@ export const manualRoutes = (app, router, config) => {
     }
 
     // attach the routes as defined
-    defineRoute(router, routeInfo.instance, relPath);
+    defineRoute(app, router, routeInfo.instance, relPath);
   });
 };
