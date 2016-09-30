@@ -13,3 +13,6 @@ export * from './security/load_admin_users';
 export * from './security/load_admin_user';
 export * from './security/save_admin_user';
 export * from './security/delete_admin_user';
+export * from './security/load_admin_roles';
+export * from './security/save_admin_role';
+export * from './security/delete_admin_roles';

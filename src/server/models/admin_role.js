@@ -3,6 +3,6 @@ export default {
   definition: {
     name: 'string',
     canEditSchema: 'bool',
-    canEditUsers: 'bool',
+    canEditSecurity: 'bool',
   },
 };

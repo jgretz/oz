@@ -17,6 +17,10 @@ class Menu extends Component {
     goto('adminusers');
   }
 
+  adminRoles() {
+    goto('adminroles');
+  }
+
   buildNavigation(page, objects) {
     return objects.map(obj =>
     (
@@ -53,7 +57,7 @@ class Menu extends Component {
             <li onClick={this.adminUsers}>
               Users <i className="fa fa-users" />
             </li>
-            <li>
+            <li onClick={this.adminRoles}>
               Roles <i className="fa fa-wrench" />
             </li>
           </ul>

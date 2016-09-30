@@ -16,6 +16,8 @@ import DataDetail from './data/detail';
 
 import AdminUserList from './security/admin_user_list';
 import AdminUserDetail from './security/admin_user_detail';
+import AdminRoleList from './security/admin_role_list';
+import AdminRoleDetail from './security/admin_role_detail';
 
 // TODO: fix this hack
 let root = adminUrl('');
@@ -37,6 +39,8 @@ export default () =>
 
       <Route path="adminusers" component={AdminUserList} />
       <Route path="adminusers/:id" component={AdminUserDetail} />
+      <Route path="adminroles" component={AdminRoleList} />
+      <Route path="adminroles/:id" component={AdminRoleDetail} />
 
       <Route path="*" component={NotFound} />
     </Route>
