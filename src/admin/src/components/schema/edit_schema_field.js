@@ -66,14 +66,11 @@ class EditSchemaField extends Component {
           <Col xs={1} className="sort">
             <i className="fa fa-bars" />
           </Col>
-          <Col xs={3}>
+          <Col xs={5}>
             <TextInput name={`${field}.name`} label="Name" />
           </Col>
-          <Col xs={3}>
+          <Col xs={4}>
             <SelectInput name={`${field}.field_type`} label="Type" map={schemaTypes} />
-          </Col>
-          <Col xs={3}>
-            <SelectInput name={`${field}.permission`} label="Permission" />
           </Col>
           <Col xs={2}>
             <Button
@@ -86,12 +83,12 @@ class EditSchemaField extends Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={3} xsOffset={1} className="field-group-checkboxes">
+          <Col xs={5} xsOffset={1} className="field-group-checkboxes">
             <CheckboxInput name={`${field}.required`} label="Required" />
             <CheckboxInput name={`${field}.identity`} label="Identity" />
             <CheckboxInput name={`${field}.showInList`} label="Show In List" />
           </Col>
-          <Col xs={3}>
+          <Col xs={4}>
             {this.renderSecondayInput()}
           </Col>
         </Row>

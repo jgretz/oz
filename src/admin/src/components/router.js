@@ -10,8 +10,12 @@ import Home from './misc/home';
 import NotFound from './misc/not_found';
 
 import EditSchema from './schema/edit_schema';
+
 import DataList from './data/list';
 import DataDetail from './data/detail';
+
+import AdminUserList from './security/admin_user_list';
+import AdminUserDetail from './security/admin_user_detail';
 
 // TODO: fix this hack
 let root = adminUrl('');
@@ -30,6 +34,9 @@ export default () =>
 
       <Route path="data/:id" component={DataList} />
       <Route path="data/:object/:id" component={DataDetail} />
+
+      <Route path="adminusers" component={AdminUserList} />
+      <Route path="adminusers/:id" component={AdminUserDetail} />
 
       <Route path="*" component={NotFound} />
     </Route>

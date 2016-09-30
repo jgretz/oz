@@ -4,6 +4,7 @@ export default {
     name: 'string',
     url: 'string',
     icon: 'string',
+    permission: 'string',
     trackChangeDates: 'bool',
     hideInData: 'bool',
     fields: [{

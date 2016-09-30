@@ -7,7 +7,7 @@ import autobind from 'class-autobind';
 import Reorder from 'react-reorder';
 import Notifications, { notify } from 'react-notify-toast';
 
-import { TextInput, CheckboxInput } from 'controls/inputs';
+import { TextInput, CheckboxInput, SelectInput } from 'controls/inputs';
 import { saveSchema, deleteSchema } from 'actions';
 import { filterById, goto } from 'support';
 
@@ -142,6 +142,7 @@ class EditSchema extends Component {
               <TextInput name="name" label="Name" />
               <TextInput name="url" label="Url" />
               <TextInput name="icon" label="Icon" />
+              <SelectInput name="permission" label="Permission" />
               <CheckboxInput name="trackChangeDates" label="Track Change Dates" />
               <CheckboxInput name="hideInData" label="Hide In Data" />
               <br /><br />

@@ -13,6 +13,10 @@ class Menu extends Component {
     goto('schema');
   }
 
+  adminUsers() {
+    goto('adminusers');
+  }
+
   buildNavigation(page, objects) {
     return objects.map(obj =>
     (
@@ -41,6 +45,17 @@ class Menu extends Component {
               New<i className="fa fa-plus" />
             </li>
             {this.buildNavigation('schema', sorted)}
+          </ul>
+        </div>
+        <div>
+          <h2>Security</h2>
+          <ul>
+            <li onClick={this.adminUsers}>
+              Users <i className="fa fa-users" />
+            </li>
+            <li>
+              Roles <i className="fa fa-wrench" />
+            </li>
           </ul>
         </div>
       </div>

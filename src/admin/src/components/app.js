@@ -14,11 +14,11 @@ class App extends Component {
 
   render() {
     return (
-      <Row>
-        <Col xs={2}>
+      <Row className="menu-container">
+        <Col xs={4} sm={3} md={2}>
           <Menu />
         </Col>
-        <Col xs={10}>
+        <Col xs={8} sm={9} md={10}>
           <div className="content">
             {this.props.children}
           </div>

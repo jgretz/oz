@@ -6,6 +6,8 @@ import schemaTypes from './schema/schema_types';
 
 import data from './data/data';
 
+import adminUsers from './security/admin_users';
+
 const rootReducer = combineReducers({
   form: formReducer,
 
@@ -13,6 +15,8 @@ const rootReducer = combineReducers({
   schemaTypes,
 
   data,
+
+  adminUsers,
 });
 
 export default rootReducer;
