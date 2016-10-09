@@ -7,5 +7,5 @@ export * from './schema_input';
 export * from './rich_text_input';
 export * from './image_input';
 export * from './typeahead_input';
-
 export * from './input_label';
+export * from './admin_role_input';

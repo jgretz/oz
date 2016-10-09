@@ -3,7 +3,6 @@ import autobind from 'class-autobind';
 import { Row, Col, Button } from 'react-bootstrap';
 
 import { goto } from 'support';
-import { SchemaInput } from '../inputs';
 
 // Field Render Component
 export default class FormArrayItem extends Component {
@@ -18,25 +17,26 @@ export default class FormArrayItem extends Component {
   }
 
   newItem() {
-    const { item: { field } } = this.props;
-    goto(`data/${field.peer}/new`);
+    const { item: { field, newLink } } = this.props;
+    goto(newLink || `data/${field.peer}/new`);
   }
 
   render() {
-    const { item: { field, reduxField } } = this.props;
+    const { item: { field, reduxField, editorType } } = this.props;
+    const Editor = editorType;
 
     return (
       <Row>
         <Col xs={1} className="sort">
           <i className="fa fa-bars" />
         </Col>
-        <Col xs={9}>
-          <SchemaInput
+        <Col xs={7} lg={9}>
+          <Editor
             field={field}
             reduxField={reduxField}
           />
         </Col>
-        <Col xs={2}>
+        <Col xs={4} lg={2}>
           <Button
             bsStyle="primary"
             className="pull-right new-array"

@@ -6,7 +6,8 @@ import { Row, Col, Button } from 'react-bootstrap';
 import autobind from 'class-autobind';
 import Notifications, { notify } from 'react-notify-toast';
 
-import { TextInput } from 'controls/inputs';
+import { TextInput, AdminRoleInput } from 'controls/inputs';
+import { formArray } from 'controls/forms';
 import { loadAdminUser, saveAdminUser, deleteAdminUser } from 'actions';
 import { goto } from 'support';
 
@@ -119,6 +120,7 @@ class AdminUserDetail extends Component {
               <TextInput name="name" label="Name" />
               <TextInput name="email" label="Email" />
               <TextInput name="password" label="Password" type="password" />
+              {formArray({ name: 'roles' }, AdminRoleInput, 'adminroles/new')}
             </form>
           </Col>
         </Row>

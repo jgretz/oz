@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import autobind from 'class-autobind';
 import Reorder from 'react-reorder';
 
-import { InputLabel } from '../inputs';
+import { InputLabel, SchemaInput } from '../inputs';
 import FormArrayItem from './form_array_item';
 
 class ArrayWrapper extends Component {
@@ -27,8 +27,15 @@ class ArrayWrapper extends Component {
   }
 
   renderArray({ fields }) {
-    const { field } = this.props;
-    const list = fields.map((reduxField, index) => ({ fields, field, reduxField, index }));
+    const { field, editorType, newLink } = this.props;
+    const list = fields.map((reduxField, index) => ({
+      fields,
+      field,
+      reduxField,
+      index,
+      editorType: editorType || SchemaInput,
+      newLink,
+    }));
 
     return (
       <div>
@@ -63,7 +70,9 @@ class ArrayWrapper extends Component {
 
 ArrayWrapper.propTypes = {
   field: PropTypes.object.isRequired,
+  editorType: PropTypes.func,
+  newLink: PropTypes.string,
 };
 
-export const formArray = (field) =>
-  <ArrayWrapper key={field.name} field={field} />;
+export const formArray = (field, editorType, newLink) =>
+  <ArrayWrapper key={field.name} field={field} editorType={editorType} newLink={newLink} />;
