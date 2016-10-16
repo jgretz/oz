@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { goto } from 'support';
+import { goto, isLoggedIn } from 'support';
 
 class Menu extends Component {
   onSelection(page, object) {
@@ -31,6 +31,10 @@ class Menu extends Component {
   }
 
   render() {
+    if (!isLoggedIn()) {
+      return null;
+    }
+
     const sorted = _.sortBy(this.props.schema, 'name');
     const data = _.filter(sorted, s => !s.hideInData);
 

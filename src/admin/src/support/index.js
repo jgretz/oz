@@ -6,3 +6,5 @@ export * from './filterById';
 
 export * from './update_item_in_array';
 export * from './remove_item_from_array';
+
+export * from './auth_services';
