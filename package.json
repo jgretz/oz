@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/jgretz/zen-express#readme",
   "dependencies": {
+    "bcrypt": "^0.8.7",
     "body-parser": "^1.15.0",
     "colors": "^1.1.2",
     "cors": "^2.7.1",

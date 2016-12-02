@@ -5,7 +5,9 @@ import applyRoutes from './server/routing';
 
 const defaultConfig = {
   port: 3000,
-  admin: true
+  admin: {
+    enforceSecurity: false,
+  },
 };
 
 export default (options) => {
@@ -24,7 +26,9 @@ export default (options) => {
 // {
 //   src: __dirname,
 //   port: 3000,
-//   admin: true,
+//   admin: {
+//
+//   },
 //   spa: {
 //     path: '/release',
 //   },
