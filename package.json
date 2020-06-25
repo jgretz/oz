@@ -34,7 +34,7 @@
     "glob": "^7.0.6",
     "lodash": "^4.13.1",
     "moment": "^2.14.1",
-    "mongoose": "^4.6.0",
+    "mongoose": "^5.9.20",
     "mongoose-relationship": "^0.1.5",
     "multer": "^1.2.0",
     "object-assign": "^4.0.1",
