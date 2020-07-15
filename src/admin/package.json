@@ -28,7 +28,7 @@
     "axios": "0.13.1",
     "class-autobind": "0.1.4",
     "humanize-plus": "1.8.2",
-    "lodash": "4.15.0",
+    "lodash": "4.17.19",
     "node-sass": "3.8.0",
     "npm": "3.10.6",
     "object-assign": "4.1.0",
